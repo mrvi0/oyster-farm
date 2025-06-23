@@ -29,6 +29,24 @@ function oyster_farm_add_meta_boxes() {
     );
     
     add_meta_box(
+        'reviews_section',
+        'Блок отзывов',
+        'oyster_farm_reviews_callback',
+        'page',
+        'normal',
+        'high'
+    );
+    
+    add_meta_box(
+        'gallery_section',
+        'Блок галереи',
+        'oyster_farm_gallery_callback',
+        'page',
+        'normal',
+        'high'
+    );
+    
+    add_meta_box(
         'contacts_section',
         'Блок контактов',
         'oyster_farm_contacts_callback',
@@ -147,6 +165,91 @@ function oyster_farm_products_callback($post) {
     echo '</table>';
 }
 
+// Отзывы секция
+function oyster_farm_reviews_callback($post) {
+    wp_nonce_field('oyster_farm_save_meta_box_data', 'oyster_farm_meta_box_nonce');
+    
+    $reviews_title = get_post_meta($post->ID, '_reviews_title', true);
+    $reviews_subtitle = get_post_meta($post->ID, '_reviews_subtitle', true);
+    $reviews_items = get_post_meta($post->ID, '_reviews_items', true);
+    
+    if (!is_array($reviews_items)) {
+        $reviews_items = [
+            ['name' => '', 'text' => '', 'photo' => '', 'rating' => '5', 'date' => '']
+        ];
+    }
+    
+    echo '<table class="form-table">';
+    echo '<tr><th><label for="reviews_title">Заголовок секции</label></th>';
+    echo '<td><input type="text" id="reviews_title" name="reviews_title" value="' . esc_attr($reviews_title) . '" style="width: 100%;" /></td></tr>';
+    
+    echo '<tr><th><label for="reviews_subtitle">Подзаголовок</label></th>';
+    echo '<td><textarea id="reviews_subtitle" name="reviews_subtitle" style="width: 100%; height: 60px;">' . esc_textarea($reviews_subtitle) . '</textarea></td></tr>';
+    
+    echo '<tr><th><label>Отзывы</label></th><td>';
+    echo '<div id="reviews-container">';
+    foreach ($reviews_items as $index => $item) {
+        echo '<div class="review-item" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px;">';
+        echo '<h4>Отзыв ' . ($index + 1) . '</h4>';
+        echo '<p><label>Имя: <input type="text" name="reviews_items[' . $index . '][name]" value="' . esc_attr($item['name']) . '" style="width: 100%;" /></label></p>';
+        echo '<p><label>Текст отзыва: <textarea name="reviews_items[' . $index . '][text]" style="width: 100%; height: 80px;">' . esc_textarea($item['text']) . '</textarea></label></p>';
+        echo '<p><label>Фото: <input type="text" name="reviews_items[' . $index . '][photo]" value="' . esc_attr($item['photo']) . '" style="width: 100%;" />';
+        echo '<button type="button" class="button" onclick="selectImage(\'reviews_items[' . $index . '][photo]\')">Выбрать</button></label></p>';
+        echo '<p><label>Рейтинг (1-5): <select name="reviews_items[' . $index . '][rating]">';
+        for ($i = 1; $i <= 5; $i++) {
+            $selected = ($item['rating'] == $i) ? 'selected' : '';
+            echo '<option value="' . $i . '" ' . $selected . '>' . $i . '</option>';
+        }
+        echo '</select></label></p>';
+        echo '<p><label>Дата: <input type="text" name="reviews_items[' . $index . '][date]" value="' . esc_attr($item['date']) . '" placeholder="01.01.2024" /></label></p>';
+        echo '<button type="button" class="button remove-review">Удалить отзыв</button>';
+        echo '</div>';
+    }
+    echo '</div>';
+    echo '<button type="button" class="button" id="add-review">Добавить отзыв</button>';
+    echo '</td></tr>';
+    echo '</table>';
+}
+
+// Галерея секция
+function oyster_farm_gallery_callback($post) {
+    wp_nonce_field('oyster_farm_save_meta_box_data', 'oyster_farm_meta_box_nonce');
+    
+    $gallery_title = get_post_meta($post->ID, '_gallery_title', true);
+    $gallery_subtitle = get_post_meta($post->ID, '_gallery_subtitle', true);
+    $gallery_items = get_post_meta($post->ID, '_gallery_items', true);
+    
+    if (!is_array($gallery_items)) {
+        $gallery_items = [
+            ['image' => '', 'title' => '', 'description' => '']
+        ];
+    }
+    
+    echo '<table class="form-table">';
+    echo '<tr><th><label for="gallery_title">Заголовок секции</label></th>';
+    echo '<td><input type="text" id="gallery_title" name="gallery_title" value="' . esc_attr($gallery_title) . '" style="width: 100%;" /></td></tr>';
+    
+    echo '<tr><th><label for="gallery_subtitle">Подзаголовок</label></th>';
+    echo '<td><textarea id="gallery_subtitle" name="gallery_subtitle" style="width: 100%; height: 60px;">' . esc_textarea($gallery_subtitle) . '</textarea></td></tr>';
+    
+    echo '<tr><th><label>Изображения галереи</label></th><td>';
+    echo '<div id="gallery-container">';
+    foreach ($gallery_items as $index => $item) {
+        echo '<div class="gallery-item" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px;">';
+        echo '<h4>Изображение ' . ($index + 1) . '</h4>';
+        echo '<p><label>Изображение: <input type="text" name="gallery_items[' . $index . '][image]" value="' . esc_attr($item['image']) . '" style="width: 100%;" />';
+        echo '<button type="button" class="button" onclick="selectImage(\'gallery_items[' . $index . '][image]\')">Выбрать</button></label></p>';
+        echo '<p><label>Название: <input type="text" name="gallery_items[' . $index . '][title]" value="' . esc_attr($item['title']) . '" style="width: 100%;" /></label></p>';
+        echo '<p><label>Описание: <textarea name="gallery_items[' . $index . '][description]" style="width: 100%; height: 60px;">' . esc_textarea($item['description']) . '</textarea></label></p>';
+        echo '<button type="button" class="button remove-gallery">Удалить изображение</button>';
+        echo '</div>';
+    }
+    echo '</div>';
+    echo '<button type="button" class="button" id="add-gallery">Добавить изображение</button>';
+    echo '</td></tr>';
+    echo '</table>';
+}
+
 // Контакты секция
 function oyster_farm_contacts_callback($post) {
     wp_nonce_field('oyster_farm_save_meta_box_data', 'oyster_farm_meta_box_nonce');
@@ -245,6 +348,28 @@ function oyster_farm_save_meta_box_data($post_id) {
     }
     if (isset($_POST['products_items'])) {
         update_post_meta($post_id, '_products_items', $_POST['products_items']);
+    }
+    
+    // Отзывы
+    if (isset($_POST['reviews_title'])) {
+        update_post_meta($post_id, '_reviews_title', sanitize_text_field($_POST['reviews_title']));
+    }
+    if (isset($_POST['reviews_subtitle'])) {
+        update_post_meta($post_id, '_reviews_subtitle', sanitize_textarea_field($_POST['reviews_subtitle']));
+    }
+    if (isset($_POST['reviews_items'])) {
+        update_post_meta($post_id, '_reviews_items', $_POST['reviews_items']);
+    }
+    
+    // Галерея
+    if (isset($_POST['gallery_title'])) {
+        update_post_meta($post_id, '_gallery_title', sanitize_text_field($_POST['gallery_title']));
+    }
+    if (isset($_POST['gallery_subtitle'])) {
+        update_post_meta($post_id, '_gallery_subtitle', sanitize_textarea_field($_POST['gallery_subtitle']));
+    }
+    if (isset($_POST['gallery_items'])) {
+        update_post_meta($post_id, '_gallery_items', $_POST['gallery_items']);
     }
     
     // Контакты

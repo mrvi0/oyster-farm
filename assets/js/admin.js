@@ -1,10 +1,8 @@
 jQuery(document).ready(function($) {
     // Добавление услуги
     $('#add-service').on('click', function() {
-        var container = $('#services-container');
-        var index = container.children().length;
-        
-        var newService = `
+        var index = $('.service-item').length;
+        var newItem = `
             <div class="service-item" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px;">
                 <h4>Услуга ${index + 1}</h4>
                 <p><label>Название: <input type="text" name="services_items[${index}][title]" style="width: 100%;" /></label></p>
@@ -14,32 +12,25 @@ jQuery(document).ready(function($) {
                 <button type="button" class="button remove-service">Удалить услугу</button>
             </div>
         `;
-        
-        container.append(newService);
+        $('#services-container').append(newItem);
     });
     
     // Удаление услуги
     $(document).on('click', '.remove-service', function() {
         $(this).closest('.service-item').remove();
-        // Переиндексируем оставшиеся элементы
-        $('#services-container .service-item').each(function(index) {
-            $(this).find('h4').text('Услуга ' + (index + 1));
-            $(this).find('input, textarea').each(function() {
-                var name = $(this).attr('name');
-                if (name) {
-                    var newName = name.replace(/\[\d+\]/, '[' + index + ']');
-                    $(this).attr('name', newName);
-                }
-            });
-        });
+        updateServiceNumbers();
     });
+    
+    function updateServiceNumbers() {
+        $('.service-item').each(function(index) {
+            $(this).find('h4').text('Услуга ' + (index + 1));
+        });
+    }
     
     // Добавление продукта
     $('#add-product').on('click', function() {
-        var container = $('#products-container');
-        var index = container.children().length;
-        
-        var newProduct = `
+        var index = $('.product-item').length;
+        var newItem = `
             <div class="product-item" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px;">
                 <h4>Продукт ${index + 1}</h4>
                 <p><label>Название: <input type="text" name="products_items[${index}][title]" style="width: 100%;" /></label></p>
@@ -50,29 +41,86 @@ jQuery(document).ready(function($) {
                 <button type="button" class="button remove-product">Удалить продукт</button>
             </div>
         `;
-        
-        container.append(newProduct);
+        $('#products-container').append(newItem);
     });
     
     // Удаление продукта
     $(document).on('click', '.remove-product', function() {
         $(this).closest('.product-item').remove();
-        // Переиндексируем оставшиеся элементы
-        $('#products-container .product-item').each(function(index) {
-            $(this).find('h4').text('Продукт ' + (index + 1));
-            $(this).find('input, textarea').each(function() {
-                var name = $(this).attr('name');
-                if (name) {
-                    var newName = name.replace(/\[\d+\]/, '[' + index + ']');
-                    $(this).attr('name', newName);
-                }
-            });
-        });
+        updateProductNumbers();
     });
+    
+    function updateProductNumbers() {
+        $('.product-item').each(function(index) {
+            $(this).find('h4').text('Продукт ' + (index + 1));
+        });
+    }
+    
+    // Отзывы
+    $('#add-review').on('click', function() {
+        var index = $('.review-item').length;
+        var newItem = `
+            <div class="review-item" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px;">
+                <h4>Отзыв ${index + 1}</h4>
+                <p><label>Имя: <input type="text" name="reviews_items[${index}][name]" style="width: 100%;" /></label></p>
+                <p><label>Текст отзыва: <textarea name="reviews_items[${index}][text]" style="width: 100%; height: 80px;"></textarea></label></p>
+                <p><label>Фото: <input type="text" name="reviews_items[${index}][photo]" style="width: 100%;" />
+                <button type="button" class="button" onclick="selectImage('reviews_items[${index}][photo]')">Выбрать</button></label></p>
+                <p><label>Рейтинг (1-5): <select name="reviews_items[${index}][rating]">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5" selected>5</option>
+                </select></label></p>
+                <p><label>Дата: <input type="text" name="reviews_items[${index}][date]" placeholder="01.01.2024" /></label></p>
+                <button type="button" class="button remove-review">Удалить отзыв</button>
+            </div>
+        `;
+        $('#reviews-container').append(newItem);
+    });
+    
+    $(document).on('click', '.remove-review', function() {
+        $(this).closest('.review-item').remove();
+        updateReviewNumbers();
+    });
+    
+    function updateReviewNumbers() {
+        $('.review-item').each(function(index) {
+            $(this).find('h4').text('Отзыв ' + (index + 1));
+        });
+    }
+    
+    // Галерея
+    $('#add-gallery').on('click', function() {
+        var index = $('.gallery-item').length;
+        var newItem = `
+            <div class="gallery-item" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px;">
+                <h4>Изображение ${index + 1}</h4>
+                <p><label>Изображение: <input type="text" name="gallery_items[${index}][image]" style="width: 100%;" />
+                <button type="button" class="button" onclick="selectImage('gallery_items[${index}][image]')">Выбрать</button></label></p>
+                <p><label>Название: <input type="text" name="gallery_items[${index}][title]" style="width: 100%;" /></label></p>
+                <p><label>Описание: <textarea name="gallery_items[${index}][description]" style="width: 100%; height: 60px;"></textarea></label></p>
+                <button type="button" class="button remove-gallery">Удалить изображение</button>
+            </div>
+        `;
+        $('#gallery-container').append(newItem);
+    });
+    
+    $(document).on('click', '.remove-gallery', function() {
+        $(this).closest('.gallery-item').remove();
+        updateGalleryNumbers();
+    });
+    
+    function updateGalleryNumbers() {
+        $('.gallery-item').each(function(index) {
+            $(this).find('h4').text('Изображение ' + (index + 1));
+        });
+    }
 });
 
 // Функция для выбора изображения
-function selectImage(inputId) {
+function selectImage(fieldId) {
     var frame = wp.media({
         title: 'Выберите изображение',
         multiple: false
@@ -80,7 +128,7 @@ function selectImage(inputId) {
     
     frame.on('select', function() {
         var attachment = frame.state().get('selection').first().toJSON();
-        document.getElementById(inputId).value = attachment.url;
+        document.getElementById(fieldId).value = attachment.url;
     });
     
     frame.open();
