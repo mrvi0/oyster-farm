@@ -821,9 +821,6 @@ section,
 .gallery-scroll a:nth-child(2n+1) {
   grid-row: 1;
 }
-.gallery-thumb:hover {
-  transform: scale(1.04);
-}
 .gallery-modal {
   position: fixed;
   z-index: 9999;
