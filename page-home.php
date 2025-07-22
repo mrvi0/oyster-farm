@@ -18,10 +18,17 @@ $products_items = get_post_meta(get_the_ID(), '_products_items', true);
 
 $contacts_title = get_post_meta(get_the_ID(), '_contacts_title', true) ?: 'Контакты';
 $contacts_subtitle = get_post_meta(get_the_ID(), '_contacts_subtitle', true) ?: 'Свяжитесь с нами для заказа или консультации';
-$contacts_address = get_post_meta(get_the_ID(), '_contacts_address', true);
-$contacts_phone = get_post_meta(get_the_ID(), '_contacts_phone', true);
-$contacts_email = get_post_meta(get_the_ID(), '_contacts_email', true);
-$contacts_social = get_post_meta(get_the_ID(), '_contacts_social', true);
+$contacts_address = get_theme_mod('contacts_address');
+$contacts_phone = get_theme_mod('contacts_phone');
+$contacts_email = get_theme_mod('contacts_email');
+$contacts_social = [];
+for ($i = 1; $i <= 4; $i++) {
+    $platform = get_theme_mod("contacts_social_platform_$i");
+    $url = get_theme_mod("contacts_social_url_$i");
+    if ($platform && $url) {
+        $contacts_social[] = ['platform' => $platform, 'url' => $url];
+    }
+}
 
 // Получаем услуги из CPT
 $services_query = new WP_Query([

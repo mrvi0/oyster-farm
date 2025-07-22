@@ -85,4 +85,46 @@ function oyster_farm_save_service_meta($post_id) {
         update_post_meta($post_id, '_service_price', sanitize_text_field($_POST['service_price']));
     }
 }
-add_action('save_post_service', 'oyster_farm_save_service_meta'); 
+add_action('save_post_service', 'oyster_farm_save_service_meta');
+
+// Добавляю секцию 'Контакты' в Customizer
+function oyster_farm_customize_register($wp_customize) {
+    $wp_customize->add_section('contacts_section', [
+        'title' => 'Контакты',
+        'priority' => 30,
+    ]);
+    $wp_customize->add_setting('contacts_address', ['default' => '']);
+    $wp_customize->add_control('contacts_address', [
+        'label' => 'Адрес',
+        'section' => 'contacts_section',
+        'type' => 'text',
+    ]);
+    $wp_customize->add_setting('contacts_phone', ['default' => '']);
+    $wp_customize->add_control('contacts_phone', [
+        'label' => 'Телефон',
+        'section' => 'contacts_section',
+        'type' => 'text',
+    ]);
+    $wp_customize->add_setting('contacts_email', ['default' => '']);
+    $wp_customize->add_control('contacts_email', [
+        'label' => 'Email',
+        'section' => 'contacts_section',
+        'type' => 'text',
+    ]);
+    // Соцсети (до 4)
+    for ($i = 1; $i <= 4; $i++) {
+        $wp_customize->add_setting("contacts_social_platform_$i", ['default' => '']);
+        $wp_customize->add_control("contacts_social_platform_$i", [
+            'label' => "Соцсеть $i — платформа (например, vk, telegram, instagram)",
+            'section' => 'contacts_section',
+            'type' => 'text',
+        ]);
+        $wp_customize->add_setting("contacts_social_url_$i", ['default' => '']);
+        $wp_customize->add_control("contacts_social_url_$i", [
+            'label' => "Соцсеть $i — ссылка",
+            'section' => 'contacts_section',
+            'type' => 'text',
+        ]);
+    }
+}
+add_action('customize_register', 'oyster_farm_customize_register'); 
