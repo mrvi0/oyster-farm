@@ -697,11 +697,8 @@ section,
 
 /* Contact Form 7 стили */
 .wpcf7 {
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  
   padding: 2rem 1.5rem;
-  max-width: 500px;
   margin: 2rem auto 0 auto;
 }
 .wpcf7-form input[type="text"],
