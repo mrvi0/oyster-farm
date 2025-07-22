@@ -138,30 +138,69 @@ function oyster_farm_customize_register($wp_customize) {
         'section' => 'contacts_section',
         'type' => 'text',
     ]);
-    // Секция для цветов темы
-    $wp_customize->add_section('theme_colors', [
-        'title' => 'Цвета темы',
-        'priority' => 5,
+    // Секция для переменных темы
+    $wp_customize->add_section('theme_vars', [
+        'title' => 'Переменные темы',
+        'priority' => 4,
     ]);
     $wp_customize->add_setting('color_bg', ['default' => '#f4f4f6']);
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'color_bg', [
         'label' => 'Фон сайта',
-        'section' => 'theme_colors',
+        'section' => 'theme_vars',
     ]));
     $wp_customize->add_setting('color_block', ['default' => '#fff']);
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'color_block', [
         'label' => 'Фон блоков',
-        'section' => 'theme_colors',
+        'section' => 'theme_vars',
     ]));
     $wp_customize->add_setting('color_text', ['default' => '#111']);
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'color_text', [
         'label' => 'Основной цвет текста',
-        'section' => 'theme_colors',
+        'section' => 'theme_vars',
+    ]));
+    $wp_customize->add_setting('color_text_secondary', ['default' => '#222']);
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'color_text_secondary', [
+        'label' => 'Вторичный цвет текста',
+        'section' => 'theme_vars',
     ]));
     $wp_customize->add_setting('color_accent', ['default' => '#fff900']);
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'color_accent', [
         'label' => 'Акцентный цвет',
-        'section' => 'theme_colors',
+        'section' => 'theme_vars',
     ]));
+    $wp_customize->add_setting('color_accent_hover', ['default' => '#ffe600']);
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'color_accent_hover', [
+        'label' => 'Акцентный цвет (hover)',
+        'section' => 'theme_vars',
+    ]));
+    $wp_customize->add_setting('color_border', ['default' => '#e0e0e0']);
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'color_border', [
+        'label' => 'Цвет границ',
+        'section' => 'theme_vars',
+    ]));
+    $wp_customize->add_setting('color_shadow', ['default' => '0 2px 12px rgba(0,0,0,0.04)']);
+    $wp_customize->add_control('color_shadow', [
+        'label' => 'Тень (CSS)',
+        'section' => 'theme_vars',
+        'type' => 'text',
+    ]);
+    $wp_customize->add_setting('radius', ['default' => '14px']);
+    $wp_customize->add_control('radius', [
+        'label' => 'Радиус скругления',
+        'section' => 'theme_vars',
+        'type' => 'text',
+    ]);
+    $wp_customize->add_setting('transition', ['default' => '0.18s cubic-bezier(.4,0,.2,1)']);
+    $wp_customize->add_control('transition', [
+        'label' => 'Переход (CSS)',
+        'section' => 'theme_vars',
+        'type' => 'text',
+    ]);
+    $wp_customize->add_setting('font_main', ['default' => "'Inter', Arial, 'Segoe UI', sans-serif"]);
+    $wp_customize->add_control('font_main', [
+        'label' => 'Основной шрифт',
+        'section' => 'theme_vars',
+        'type' => 'text',
+    ]);
 }
 add_action('customize_register', 'oyster_farm_customize_register'); 
