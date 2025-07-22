@@ -72,7 +72,7 @@ function oyster_farm_hero_callback($post) {
     echo '<td><input type="text" id="hero_title" name="hero_title" value="' . esc_attr($hero_title) . '" style="width: 100%;" /></td></tr>';
     
     echo '<tr><th><label for="hero_subtitle">Подзаголовок</label></th>';
-    echo '<td><textarea id="hero_subtitle" name="hero_subtitle" style="width: 100%; height: 80px;">' . esc_textarea($hero_subtitle) . '</textarea></td></tr>';
+    echo '<td><textarea id="hero_subtitle" name="hero_subtitle" style="width: 100%; height: 80px;">' . $hero_subtitle . '</textarea></td></tr>';
     
     echo '<tr><th><label for="hero_button_text">Текст кнопки</label></th>';
     echo '<td><input type="text" id="hero_button_text" name="hero_button_text" value="' . esc_attr($hero_button_text) . '" /></td></tr>';
@@ -105,7 +105,7 @@ function oyster_farm_services_callback($post) {
     echo '<td><input type="text" id="services_title" name="services_title" value="' . esc_attr($services_title) . '" style="width: 100%;" /></td></tr>';
     
     echo '<tr><th><label for="services_subtitle">Подзаголовок</label></th>';
-    echo '<td><textarea id="services_subtitle" name="services_subtitle" style="width: 100%; height: 60px;">' . esc_textarea($services_subtitle) . '</textarea></td></tr>';
+    echo '<td><textarea id="services_subtitle" name="services_subtitle" style="width: 100%; height: 60px;">' . $services_subtitle . '</textarea></td></tr>';
     
     echo '<tr><th><label>Услуги</label></th><td>';
     echo '<div id="services-container">';
@@ -144,7 +144,7 @@ function oyster_farm_products_callback($post) {
     echo '<td><input type="text" id="products_title" name="products_title" value="' . esc_attr($products_title) . '" style="width: 100%;" /></td></tr>';
     
     echo '<tr><th><label for="products_subtitle">Подзаголовок</label></th>';
-    echo '<td><textarea id="products_subtitle" name="products_subtitle" style="width: 100%; height: 60px;">' . esc_textarea($products_subtitle) . '</textarea></td></tr>';
+    echo '<td><textarea id="products_subtitle" name="products_subtitle" style="width: 100%; height: 60px;">' . $products_subtitle . '</textarea></td></tr>';
     
     echo '<tr><th><label>Продукты</label></th><td>';
     echo '<div id="products-container">';
@@ -184,7 +184,7 @@ function oyster_farm_reviews_callback($post) {
     echo '<td><input type="text" id="reviews_title" name="reviews_title" value="' . esc_attr($reviews_title) . '" style="width: 100%;" /></td></tr>';
     
     echo '<tr><th><label for="reviews_subtitle">Подзаголовок</label></th>';
-    echo '<td><textarea id="reviews_subtitle" name="reviews_subtitle" style="width: 100%; height: 60px;">' . esc_textarea($reviews_subtitle) . '</textarea></td></tr>';
+    echo '<td><textarea id="reviews_subtitle" name="reviews_subtitle" style="width: 100%; height: 60px;">' . $reviews_subtitle . '</textarea></td></tr>';
     
     echo '<tr><th><label>Отзывы</label></th><td>';
     echo '<div id="reviews-container">';
@@ -230,7 +230,7 @@ function oyster_farm_gallery_callback($post) {
     echo '<td><input type="text" id="gallery_title" name="gallery_title" value="' . esc_attr($gallery_title) . '" style="width: 100%;" /></td></tr>';
     
     echo '<tr><th><label for="gallery_subtitle">Подзаголовок</label></th>';
-    echo '<td><textarea id="gallery_subtitle" name="gallery_subtitle" style="width: 100%; height: 60px;">' . esc_textarea($gallery_subtitle) . '</textarea></td></tr>';
+    echo '<td><textarea id="gallery_subtitle" name="gallery_subtitle" style="width: 100%; height: 60px;">' . $gallery_subtitle . '</textarea></td></tr>';
     
     echo '<tr><th><label>Изображения галереи</label></th><td>';
     echo '<div id="gallery-container">';
@@ -274,7 +274,7 @@ function oyster_farm_contacts_callback($post) {
     echo '<td><input type="text" id="contacts_title" name="contacts_title" value="' . esc_attr($contacts_title) . '" style="width: 100%;" /></td></tr>';
     
     echo '<tr><th><label for="contacts_subtitle">Подзаголовок</label></th>';
-    echo '<td><textarea id="contacts_subtitle" name="contacts_subtitle" style="width: 100%; height: 60px;">' . esc_textarea($contacts_subtitle) . '</textarea></td></tr>';
+    echo '<td><textarea id="contacts_subtitle" name="contacts_subtitle" style="width: 100%; height: 60px;">' . $contacts_subtitle . '</textarea></td></tr>';
     
     echo '<tr><th><label for="contacts_address">Адрес</label></th>';
     echo '<td><input type="text" id="contacts_address" name="contacts_address" value="' . esc_attr($contacts_address) . '" style="width: 100%;" /></td></tr>';
