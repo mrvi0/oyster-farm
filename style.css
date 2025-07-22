@@ -1,7 +1,7 @@
 /*
 Theme Name: Oyster Farm
 Description: Современная тема для компании гастроэкскурсий на устричную ферму
-Version: 2.4.0
+Version: 2.5.0
 Author: Mr Vi
 Author URI: https://t.me/b4dcat
 Theme URI: https://github.com/mrvi0/oyster-farm
@@ -171,7 +171,10 @@ body {
   border: 2px solid var(--color-border);
 }
 .service-image img {
-  width: 100%; max-width: 110px; border-radius: 10px; margin-bottom: 1rem;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 .service-card h3 {
   font-size: 1.18rem;
@@ -362,6 +365,59 @@ body {
   background: #ffd600;
   color: #111;
   transform: translateY(-2px) scale(1.03);
+}
+
+/* Services: одна услуга по центру */
+.services-grid.single-service {
+  justify-content: center;
+  display: flex;
+}
+.services-grid.single-service .service-card {
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Contact Form 7 стили */
+.wpcf7 {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  padding: 2rem 1.5rem;
+  max-width: 500px;
+  margin: 2rem auto 0 auto;
+}
+.wpcf7-form input[type="text"],
+.wpcf7-form input[type="email"],
+.wpcf7-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1.08rem;
+  margin-bottom: 1.2rem;
+  background: #f7f7f7;
+  color: #111;
+  transition: border 0.2s;
+}
+.wpcf7-form input[type="text"]:focus,
+.wpcf7-form input[type="email"]:focus,
+.wpcf7-form textarea:focus {
+  border: 1.5px solid #ffe600;
+  outline: none;
+}
+.wpcf7-form input[type="submit"] {
+  background: #ffe600;
+  color: #111;
+  font-weight: 700;
+  border: none;
+  border-radius: 30px;
+  padding: 14px 38px;
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.wpcf7-form input[type="submit"]:hover {
+  background: #ffd600;
 }
 
 @media (max-width: 900px) {

@@ -45,6 +45,18 @@ function oyster_farm_add_meta_boxes() {
         'normal',
         'high'
     );
+
+    add_meta_box(
+        'contact_form_shortcode',
+        'Код контактной формы (Contact Form 7)',
+        function($post) {
+            $shortcode = get_post_meta($post->ID, '_contact_form_shortcode', true);
+            echo '<textarea name="contact_form_shortcode" style="width:100%;height:60px;">' . esc_textarea($shortcode) . '</textarea>';
+        },
+        'page',
+        'normal',
+        'default'
+    );
 }
 add_action('add_meta_boxes', 'oyster_farm_add_meta_boxes');
 
@@ -331,6 +343,10 @@ function oyster_farm_save_meta_box_data($post_id) {
     }
     if (isset($_POST['contacts_social'])) {
         update_post_meta($post_id, '_contacts_social', $_POST['contacts_social']);
+    }
+
+    if (isset($_POST['contact_form_shortcode'])) {
+        update_post_meta($post_id, '_contact_form_shortcode', $_POST['contact_form_shortcode']);
     }
 }
 add_action('save_post', 'oyster_farm_save_meta_box_data'); 
