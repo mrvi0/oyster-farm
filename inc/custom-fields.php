@@ -11,15 +11,6 @@ function oyster_farm_add_meta_boxes() {
     );
     
     add_meta_box(
-        'services_section',
-        'Блок услуг',
-        'oyster_farm_services_callback',
-        'page',
-        'normal',
-        'high'
-    );
-    
-    add_meta_box(
         'products_section',
         'Блок продукции',
         'oyster_farm_products_callback',
@@ -83,45 +74,6 @@ function oyster_farm_hero_callback($post) {
     echo '<tr><th><label for="hero_background">Фоновая картинка</label></th>';
     echo '<td><input type="text" id="hero_background" name="hero_background" value="' . esc_attr($hero_background) . '" style="width: 100%;" />';
     echo '<button type="button" class="button" onclick="selectImage(\'hero_background\')">Выбрать изображение</button></td></tr>';
-    echo '</table>';
-}
-
-// Услуги секция
-function oyster_farm_services_callback($post) {
-    wp_nonce_field('oyster_farm_save_meta_box_data', 'oyster_farm_meta_box_nonce');
-    
-    $services_title = get_post_meta($post->ID, '_services_title', true);
-    $services_subtitle = get_post_meta($post->ID, '_services_subtitle', true);
-    $services_items = get_post_meta($post->ID, '_services_items', true);
-    
-    if (!is_array($services_items)) {
-        $services_items = [
-            ['title' => '', 'description' => '', 'icon' => '', 'price' => '']
-        ];
-    }
-    
-    echo '<table class="form-table">';
-    echo '<tr><th><label for="services_title">Заголовок секции</label></th>';
-    echo '<td><input type="text" id="services_title" name="services_title" value="' . esc_attr($services_title) . '" style="width: 100%;" /></td></tr>';
-    
-    echo '<tr><th><label for="services_subtitle">Подзаголовок</label></th>';
-    echo '<td><textarea id="services_subtitle" name="services_subtitle" style="width: 100%; height: 60px;">' . $services_subtitle . '</textarea></td></tr>';
-    
-    echo '<tr><th><label>Услуги</label></th><td>';
-    echo '<div id="services-container">';
-    foreach ($services_items as $index => $item) {
-        echo '<div class="service-item" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px;">';
-        echo '<h4>Услуга ' . ($index + 1) . '</h4>';
-        echo '<p><label>Название: <input type="text" name="services_items[' . $index . '][title]" value="' . esc_attr($item['title']) . '" style="width: 100%;" /></label></p>';
-        echo '<p><label>Описание: <textarea name="services_items[' . $index . '][description]" style="width: 100%; height: 60px;">' . esc_textarea($item['description']) . '</textarea></label></p>';
-        echo '<p><label>Иконка (FontAwesome): <input type="text" name="services_items[' . $index . '][icon]" value="' . esc_attr($item['icon']) . '" /></label></p>';
-        echo '<p><label>Цена: <input type="text" name="services_items[' . $index . '][price]" value="' . esc_attr($item['price']) . '" /></label></p>';
-        echo '<button type="button" class="button remove-service">Удалить услугу</button>';
-        echo '</div>';
-    }
-    echo '</div>';
-    echo '<button type="button" class="button" id="add-service">Добавить услугу</button>';
-    echo '</td></tr>';
     echo '</table>';
 }
 
@@ -326,17 +278,6 @@ function oyster_farm_save_meta_box_data($post_id) {
     }
     if (isset($_POST['hero_background'])) {
         update_post_meta($post_id, '_hero_background', esc_url_raw($_POST['hero_background']));
-    }
-    
-    // Услуги
-    if (isset($_POST['services_title'])) {
-        update_post_meta($post_id, '_services_title', sanitize_text_field($_POST['services_title']));
-    }
-    if (isset($_POST['services_subtitle'])) {
-        update_post_meta($post_id, '_services_subtitle', $_POST['services_subtitle']);
-    }
-    if (isset($_POST['services_items'])) {
-        update_post_meta($post_id, '_services_items', $_POST['services_items']);
     }
     
     // Продукция

@@ -12,10 +12,6 @@ $hero_button_text = get_post_meta(get_the_ID(), '_hero_button_text', true) ?: '�
 $hero_button_url = get_post_meta(get_the_ID(), '_hero_button_url', true) ?: '#services';
 $hero_background = get_post_meta(get_the_ID(), '_hero_background', true);
 
-$services_title = get_post_meta(get_the_ID(), '_services_title', true) ?: 'Наши услуги';
-$services_subtitle = get_post_meta(get_the_ID(), '_services_subtitle', true) ?: 'Гастроэкскурсии, дегустации, прокат лодок, рыбалка на катере';
-$services_items = get_post_meta(get_the_ID(), '_services_items', true);
-
 $products_title = get_post_meta(get_the_ID(), '_products_title', true) ?: 'Продукция';
 $products_subtitle = get_post_meta(get_the_ID(), '_products_subtitle', true) ?: 'Устрицы, моллюски, рыба и другие морепродукты';
 $products_items = get_post_meta(get_the_ID(), '_products_items', true);
@@ -54,14 +50,12 @@ $services_query = new WP_Query([
 
     <!-- Services Section -->
     <?php 
-    if ($services_title && $services_query->have_posts()) : ?>
+    if ($services_query->have_posts()) : ?>
     <section class="services-section">
         <div class="container">
             <div class="section-header">
-                <h2><?php echo esc_html($services_title); ?></h2>
-                <?php if ($services_subtitle) : ?>
-                    <p><?php echo wp_kses_post($services_subtitle); ?></p>
-                <?php endif; ?>
+                <h2>Наши услуги</h2>
+                <p>Гастроэкскурсии, дегустации, прокат лодок, рыбалка на катере</p>
             </div>
             <div class="services-grid">
                 <?php while ($services_query->have_posts()) : $services_query->the_post(); ?>
