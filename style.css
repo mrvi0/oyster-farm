@@ -120,25 +120,6 @@ body {
   margin-bottom: 2.2rem;
   text-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }
-.cta-button, .btn, .button {
-  display: inline-block;
-  background: var(--color-accent);
-  color: #111;
-  font-weight: 700;
-  padding: 15px 38px;
-  border-radius: 30px;
-  font-size: 1.15rem;
-  text-decoration: none;
-  transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
-  border: none;
-  box-shadow: var(--color-shadow);
-  margin-top: 1.2rem;
-}
-.cta-button:hover, .btn:hover, .button:hover {
-  background: var(--color-accent-hover);
-  color: #111;
-  transform: translateY(-2px) scale(1.03);
-}
 
 .section {
   padding: 60px 0;
@@ -158,6 +139,7 @@ body {
   font-size: 1.15rem;
 }
 
+/* Services */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -209,7 +191,7 @@ body {
   font-weight: 700;
   font-size: 1.08rem;
   margin-top: auto;
-  background: var(--color-accent);
+  background: #ffe600;
   border-radius: 7px;
   padding: 5px 14px;
   display: inline-block;
@@ -358,6 +340,28 @@ body {
   color: var(--color-text-secondary);
   font-size: 0.95rem;
   margin-bottom: 0.7rem;
+}
+
+/* Кнопки */
+.cta-button, .btn, .button {
+  display: inline-block;
+  background: #ffe600;
+  color: #111;
+  font-weight: 700;
+  padding: 15px 38px;
+  border-radius: 30px;
+  font-size: 1.15rem;
+  text-decoration: none;
+  transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+  border: none;
+  box-shadow: var(--color-shadow);
+  margin-top: 1.2rem;
+  letter-spacing: 0.5px;
+}
+.cta-button:hover, .btn:hover, .button:hover {
+  background: #ffd600;
+  color: #111;
+  transform: translateY(-2px) scale(1.03);
 }
 
 @media (max-width: 900px) {
