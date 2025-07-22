@@ -26,6 +26,15 @@ $contacts_address = get_post_meta(get_the_ID(), '_contacts_address', true);
 $contacts_phone = get_post_meta(get_the_ID(), '_contacts_phone', true);
 $contacts_email = get_post_meta(get_the_ID(), '_contacts_email', true);
 $contacts_social = get_post_meta(get_the_ID(), '_contacts_social', true);
+
+// Получаем услуги из CPT
+$services_query = new WP_Query([
+    'post_type' => 'service',
+    'posts_per_page' => -1,
+    'post_status' => 'publish',
+    'orderby' => 'menu_order',
+    'order' => 'ASC',
+]);
 ?>
 
 <main id="main" class="site-main">
@@ -45,7 +54,7 @@ $contacts_social = get_post_meta(get_the_ID(), '_contacts_social', true);
 
     <!-- Services Section -->
     <?php 
-    if ($services_title && is_array($services_items) && !empty($services_items)) : ?>
+    if ($services_title && $services_query->have_posts()) : ?>
     <section class="services-section">
         <div class="container">
             <div class="section-header">
@@ -55,22 +64,25 @@ $contacts_social = get_post_meta(get_the_ID(), '_contacts_social', true);
                 <?php endif; ?>
             </div>
             <div class="services-grid">
-                <?php foreach ($services_items as $service) : ?>
-                    <?php if (!empty($service['title'])) : ?>
+                <?php while ($services_query->have_posts()) : $services_query->the_post(); ?>
                     <div class="service-card">
-                        <?php if (!empty($service['icon'])) : ?>
-                            <div class="service-icon">
-                                <i class="<?php echo esc_attr($service['icon']); ?>"></i>
+                        <?php $icon = get_post_meta(get_the_ID(), '_service_icon', true); ?>
+                        <?php if ($icon) : ?>
+                            <div class="service-icon"><i class="<?php echo esc_attr($icon); ?>"></i></div>
+                        <?php endif; ?>
+                        <?php if (has_post_thumbnail()) : ?>
+                            <div class="service-image">
+                                <?php the_post_thumbnail('medium'); ?>
                             </div>
                         <?php endif; ?>
-                        <h3><?php echo esc_html($service['title']); ?></h3>
-                        <p><?php echo esc_html($service['description']); ?></p>
-                        <?php if (!empty($service['price'])) : ?>
-                            <div class="service-price"><?php echo esc_html($service['price']); ?></div>
+                        <h3><?php the_title(); ?></h3>
+                        <p><?php the_excerpt(); ?></p>
+                        <?php $price = get_post_meta(get_the_ID(), '_service_price', true); ?>
+                        <?php if ($price) : ?>
+                            <div class="service-price"><?php echo esc_html($price); ?></div>
                         <?php endif; ?>
                     </div>
-                    <?php endif; ?>
-                <?php endforeach; ?>
+                <?php endwhile; wp_reset_postdata(); ?>
             </div>
         </div>
     </section>
