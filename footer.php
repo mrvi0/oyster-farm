@@ -39,7 +39,16 @@
         </div>
     </div>
     <div class="footer-bottom">
-        <div class="footer-copyright">&copy; <?php echo date('Y'); ?> Oyster Farm</div>
+        <div class="footer-copyright">
+            <?php
+            $year = date('Y');
+            if ($year == '2025') {
+                echo '&copy; Вкус побережья. 2025';
+            } else {
+                echo '&copy; Вкус побережья. 2025 - ' . $year;
+            }
+            ?>
+        </div>
         <div class="footer-author-terminal">
             <span class="footer-terminal-icon">&gt;_</span>
             <span class="typewriter">Made by <a href="https://t.me/b4dcat" target="_blank" rel="noopener">Mr Vi</a></span>
