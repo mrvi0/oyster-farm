@@ -31,6 +31,7 @@ $services_query = new WP_Query([
     'orderby' => 'menu_order',
     'order' => 'ASC',
 ]);
+echo '<div style="color:red;">[DEBUG] Найдено услуг: ' . $services_query->found_posts . '</div>';
 ?>
 
 <main id="main" class="site-main">
