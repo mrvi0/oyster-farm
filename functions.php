@@ -138,26 +138,30 @@ function oyster_farm_customize_register($wp_customize) {
         'section' => 'contacts_section',
         'type' => 'text',
     ]);
-    // Цвета темы
+    // Секция для цветов темы
+    $wp_customize->add_section('theme_colors', [
+        'title' => 'Цвета темы',
+        'priority' => 5,
+    ]);
     $wp_customize->add_setting('color_bg', ['default' => '#f4f4f6']);
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'color_bg', [
         'label' => 'Фон сайта',
-        'section' => 'contacts_section',
+        'section' => 'theme_colors',
     ]));
     $wp_customize->add_setting('color_block', ['default' => '#fff']);
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'color_block', [
         'label' => 'Фон блоков',
-        'section' => 'contacts_section',
+        'section' => 'theme_colors',
     ]));
     $wp_customize->add_setting('color_text', ['default' => '#111']);
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'color_text', [
         'label' => 'Основной цвет текста',
-        'section' => 'contacts_section',
+        'section' => 'theme_colors',
     ]));
     $wp_customize->add_setting('color_accent', ['default' => '#fff900']);
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'color_accent', [
         'label' => 'Акцентный цвет',
-        'section' => 'contacts_section',
+        'section' => 'theme_colors',
     ]));
 }
 add_action('customize_register', 'oyster_farm_customize_register'); 
