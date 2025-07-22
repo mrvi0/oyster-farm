@@ -34,7 +34,7 @@ $contacts_social = get_post_meta(get_the_ID(), '_contacts_social', true);
         <div class="container">
             <div class="hero-content">
                 <h1><?php echo esc_html($hero_title); ?></h1>
-                <p><?php echo esc_html($hero_subtitle); ?></p>
+                <p><?php echo wp_kses_post($hero_subtitle); ?></p>
                 <?php 
                 if ($hero_button_text && $hero_button_url) : ?>
                     <a href="<?php echo esc_url($hero_button_url); ?>" class="cta-button"><?php echo esc_html($hero_button_text); ?></a>
@@ -51,7 +51,7 @@ $contacts_social = get_post_meta(get_the_ID(), '_contacts_social', true);
             <div class="section-header">
                 <h2><?php echo esc_html($services_title); ?></h2>
                 <?php if ($services_subtitle) : ?>
-                    <p><?php echo esc_html($services_subtitle); ?></p>
+                    <p><?php echo wp_kses_post($services_subtitle); ?></p>
                 <?php endif; ?>
             </div>
             <div class="services-grid">
@@ -84,7 +84,7 @@ $contacts_social = get_post_meta(get_the_ID(), '_contacts_social', true);
             <div class="section-header">
                 <h2><?php echo esc_html($products_title); ?></h2>
                 <?php if ($products_subtitle) : ?>
-                    <p><?php echo esc_html($products_subtitle); ?></p>
+                    <p><?php echo wp_kses_post($products_subtitle); ?></p>
                 <?php endif; ?>
             </div>
             <div class="products-grid">
@@ -123,7 +123,7 @@ $contacts_social = get_post_meta(get_the_ID(), '_contacts_social', true);
             <div class="section-header">
                 <h2><?php echo esc_html($reviews_title); ?></h2>
                 <?php if ($reviews_subtitle) : ?>
-                    <p><?php echo esc_html($reviews_subtitle); ?></p>
+                    <p><?php echo wp_kses_post($reviews_subtitle); ?></p>
                 <?php endif; ?>
             </div>
             <div class="reviews-grid">
@@ -173,7 +173,7 @@ $contacts_social = get_post_meta(get_the_ID(), '_contacts_social', true);
             <div class="section-header">
                 <h2><?php echo esc_html($gallery_title); ?></h2>
                 <?php if ($gallery_subtitle) : ?>
-                    <p><?php echo esc_html($gallery_subtitle); ?></p>
+                    <p><?php echo wp_kses_post($gallery_subtitle); ?></p>
                 <?php endif; ?>
             </div>
             <div class="gallery-grid">
@@ -207,7 +207,7 @@ $contacts_social = get_post_meta(get_the_ID(), '_contacts_social', true);
             <div class="section-header">
                 <h2><?php echo esc_html($contacts_title); ?></h2>
                 <?php if ($contacts_subtitle) : ?>
-                    <p><?php echo esc_html($contacts_subtitle); ?></p>
+                    <p><?php echo wp_kses_post($contacts_subtitle); ?></p>
                 <?php endif; ?>
             </div>
             <div class="contacts-content">

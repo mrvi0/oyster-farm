@@ -316,7 +316,7 @@ function oyster_farm_save_meta_box_data($post_id) {
         update_post_meta($post_id, '_hero_title', sanitize_text_field($_POST['hero_title']));
     }
     if (isset($_POST['hero_subtitle'])) {
-        update_post_meta($post_id, '_hero_subtitle', sanitize_textarea_field($_POST['hero_subtitle']));
+        update_post_meta($post_id, '_hero_subtitle', $_POST['hero_subtitle']);
     }
     if (isset($_POST['hero_button_text'])) {
         update_post_meta($post_id, '_hero_button_text', sanitize_text_field($_POST['hero_button_text']));
@@ -333,7 +333,7 @@ function oyster_farm_save_meta_box_data($post_id) {
         update_post_meta($post_id, '_services_title', sanitize_text_field($_POST['services_title']));
     }
     if (isset($_POST['services_subtitle'])) {
-        update_post_meta($post_id, '_services_subtitle', sanitize_textarea_field($_POST['services_subtitle']));
+        update_post_meta($post_id, '_services_subtitle', $_POST['services_subtitle']);
     }
     if (isset($_POST['services_items'])) {
         update_post_meta($post_id, '_services_items', $_POST['services_items']);
@@ -344,7 +344,7 @@ function oyster_farm_save_meta_box_data($post_id) {
         update_post_meta($post_id, '_products_title', sanitize_text_field($_POST['products_title']));
     }
     if (isset($_POST['products_subtitle'])) {
-        update_post_meta($post_id, '_products_subtitle', sanitize_textarea_field($_POST['products_subtitle']));
+        update_post_meta($post_id, '_products_subtitle', $_POST['products_subtitle']);
     }
     if (isset($_POST['products_items'])) {
         update_post_meta($post_id, '_products_items', $_POST['products_items']);
@@ -355,7 +355,7 @@ function oyster_farm_save_meta_box_data($post_id) {
         update_post_meta($post_id, '_reviews_title', sanitize_text_field($_POST['reviews_title']));
     }
     if (isset($_POST['reviews_subtitle'])) {
-        update_post_meta($post_id, '_reviews_subtitle', sanitize_textarea_field($_POST['reviews_subtitle']));
+        update_post_meta($post_id, '_reviews_subtitle', $_POST['reviews_subtitle']);
     }
     if (isset($_POST['reviews_items'])) {
         update_post_meta($post_id, '_reviews_items', $_POST['reviews_items']);
@@ -366,7 +366,7 @@ function oyster_farm_save_meta_box_data($post_id) {
         update_post_meta($post_id, '_gallery_title', sanitize_text_field($_POST['gallery_title']));
     }
     if (isset($_POST['gallery_subtitle'])) {
-        update_post_meta($post_id, '_gallery_subtitle', sanitize_textarea_field($_POST['gallery_subtitle']));
+        update_post_meta($post_id, '_gallery_subtitle', $_POST['gallery_subtitle']);
     }
     if (isset($_POST['gallery_items'])) {
         update_post_meta($post_id, '_gallery_items', $_POST['gallery_items']);
@@ -377,7 +377,7 @@ function oyster_farm_save_meta_box_data($post_id) {
         update_post_meta($post_id, '_contacts_title', sanitize_text_field($_POST['contacts_title']));
     }
     if (isset($_POST['contacts_subtitle'])) {
-        update_post_meta($post_id, '_contacts_subtitle', sanitize_textarea_field($_POST['contacts_subtitle']));
+        update_post_meta($post_id, '_contacts_subtitle', $_POST['contacts_subtitle']);
     }
     if (isset($_POST['contacts_address'])) {
         update_post_meta($post_id, '_contacts_address', sanitize_text_field($_POST['contacts_address']));
