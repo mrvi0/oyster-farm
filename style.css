@@ -1,7 +1,7 @@
 /*
 Theme Name: Oyster Farm
 Description: Современная тема для компании гастроэкскурсий на устричную ферму
-Version: 3.16.0
+Version: 3.17.0
 Author: Mr Vi
 Author URI: https://t.me/b4dcat
 Theme URI: https://github.com/mrvi0/oyster-farm
@@ -313,27 +313,76 @@ section,
 .site-footer {
   background: #111;
   color: #fff;
-  padding: 2.5rem 0 1rem;
+  padding: 0 0 0 0;
 }
-.footer-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
+.footer-main {
+  text-align: center;
+  padding: 60px 0 30px 0;
 }
-.footer-section h3 {
-  color: var(--color-accent);
-  margin-bottom: 1rem;
+.footer-phone {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 0.7rem;
 }
-.footer-section p, .footer-section a {
+.footer-email {
+  font-size: 1.3rem;
+  margin-bottom: 1.2rem;
+}
+.footer-social {
+  margin-top: 1.5rem;
+}
+.footer-social-link {
+  display: inline-block;
+  font-size: 2.2rem;
+  margin: 0 0.7rem;
   color: #fff;
-  margin-bottom: 0.5rem;
+  transition: color 0.2s;
+  text-decoration: none;
+}
+.footer-social-link:hover {
+  color: #ffe600;
 }
 .footer-bottom {
   border-top: 1px solid #222;
-  padding-top: 1rem;
+  padding: 18px 0 10px 0;
   text-align: center;
   color: #fff;
+  font-size: 1rem;
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.footer-author {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  font-size: 1.1rem;
+  color: #ffe600;
+  margin-top: 2px;
+}
+.footer-author-icon {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #222;
+  color: #ffe600;
+  text-align: center;
+  line-height: 22px;
+  font-size: 1.1rem;
+  margin-right: 0.3em;
+  border: 1.5px solid #ffe600;
+}
+.footer-author a {
+  color: #ffe600;
+  text-decoration: none;
+  font-weight: 600;
+}
+.footer-author a:hover {
+  text-decoration: underline;
 }
 
 .contact-content {
@@ -558,4 +607,8 @@ section,
   .section-header h2 { font-size: 1.1rem; }
   .site-header { min-height: 38px; }
   .footer-content { gap: 1rem; }
+  .footer-main { padding: 40px 0 20px 0; }
+  .footer-phone { font-size: 1.3rem; }
+  .footer-email { font-size: 1rem; }
+  .footer-social-link { font-size: 1.5rem; }
 } 
