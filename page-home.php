@@ -216,62 +216,16 @@ $services_query = new WP_Query([
     <!-- Contacts Section -->
     <?php 
     if ($contacts_title) : ?>
-    <section class="contacts-section">
+    <section class="contacts-section" id="contacts">
         <div class="container">
             <div class="section-header">
-                <h2><?php echo esc_html($contacts_title); ?></h2>
-                <?php if ($contacts_subtitle) : ?>
-                    <p><?php echo wp_kses_post($contacts_subtitle); ?></p>
-                <?php endif; ?>
+                <h2>Запись</h2>
             </div>
-            <div class="contacts-content">
-                <div class="contact-info">
-                    <?php if ($contacts_address) : ?>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <h4>Адрес</h4>
-                                <p><?php echo esc_html($contacts_address); ?></p>
-                            </div>
-                        </div>
-                    <?php endif; ?>
-                    
-                    <?php if ($contacts_phone) : ?>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <h4>Телефон</h4>
-                                <p><a href="tel:<?php echo esc_attr($contacts_phone); ?>"><?php echo esc_html($contacts_phone); ?></a></p>
-                            </div>
-                        </div>
-                    <?php endif; ?>
-                    
-                    <?php if ($contacts_email) : ?>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h4>Email</h4>
-                                <p><a href="mailto:<?php echo esc_attr($contacts_email); ?>"><?php echo esc_html($contacts_email); ?></a></p>
-                            </div>
-                        </div>
-                    <?php endif; ?>
-                </div>
-                
-                <?php if ($contacts_social) : ?>
-                    <div class="social-links">
-                        <h4>Мы в социальных сетях</h4>
-                        <div class="social-icons">
-                            <?php foreach ($contacts_social as $social) : ?>
-                                <?php if (!empty($social['platform']) && !empty($social['url'])) : ?>
-                                    <a href="<?php echo esc_url($social['url']); ?>" target="_blank" rel="noopener">
-                                        <i class="fab fa-<?php echo esc_attr($social['platform']); ?>"></i>
-                                    </a>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-                <?php endif; ?>
-            </div>
+            <?php 
+            $contact_form_shortcode = get_post_meta(get_the_ID(), '_contact_form_shortcode', true);
+            if ($contact_form_shortcode) : ?>
+                <?php echo do_shortcode($contact_form_shortcode); ?>
+            <?php endif; ?>
         </div>
     </section>
     <?php endif; ?>

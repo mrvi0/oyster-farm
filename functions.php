@@ -23,6 +23,7 @@ function oyster_farm_theme_setup() {
     register_nav_menus([
         'main_menu' => 'Главное меню',
         'footer_menu' => 'Меню в подвале',
+        'footer_custom' => 'Меню в футере (кастом)',
     ]);
 }
 add_action('after_setup_theme', 'oyster_farm_theme_setup');
@@ -126,5 +127,12 @@ function oyster_farm_customize_register($wp_customize) {
             'type' => 'text',
         ]);
     }
+    // В функцию oyster_farm_customize_register добавляю настройку для заголовка футер-меню
+    $wp_customize->add_setting('footer_menu_title', ['default' => 'Меню']);
+    $wp_customize->add_control('footer_menu_title', [
+        'label' => 'Заголовок меню в футере',
+        'section' => 'contacts_section',
+        'type' => 'text',
+    ]);
 }
 add_action('customize_register', 'oyster_farm_customize_register'); 
