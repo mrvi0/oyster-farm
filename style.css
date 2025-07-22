@@ -703,6 +703,8 @@ section,
 }
 .wpcf7-form input[type="text"],
 .wpcf7-form input[type="email"],
+.wpcf7-form input[type="tel"],
+.wpcf7-form input[type="number"],
 .wpcf7-form textarea {
   width: 100%;
   padding: 14px 16px;
@@ -716,6 +718,8 @@ section,
 }
 .wpcf7-form input[type="text"]:focus,
 .wpcf7-form input[type="email"]:focus,
+.wpcf7-form input[type="tel"]:focus,
+.wpcf7-form input[type="number"]:focus,
 .wpcf7-form textarea:focus {
   border: 1.5px solid #ffe600;
   outline: none;
