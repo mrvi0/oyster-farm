@@ -70,11 +70,12 @@ $services_query = new WP_Query([
                             </div>
                         <?php endif; ?>
                         <h3><?php the_title(); ?></h3>
-                        <p><?php the_excerpt(); ?></p>
+                        <?php the_content(); ?>
                         <?php $price = get_post_meta(get_the_ID(), '_service_price', true); ?>
                         <?php if ($price) : ?>
-                            <div class="service-price"><?php echo esc_html($price); ?></div>
+                            <div class="service-price"><?php echo esc_html($price); ?> ₽</div>
                         <?php endif; ?>
+                        <a href="#contacts" class="btn">Записаться</a>
                     </div>
                 <?php endwhile; wp_reset_postdata(); ?>
             </div>
