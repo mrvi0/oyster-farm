@@ -31,7 +31,6 @@ $services_query = new WP_Query([
     'orderby' => 'menu_order',
     'order' => 'ASC',
 ]);
-echo '<div style="color:red;">[DEBUG] Найдено услуг: ' . $services_query->found_posts . '</div>';
 ?>
 
 <main id="main" class="site-main">
@@ -59,9 +58,6 @@ echo '<div style="color:red;">[DEBUG] Найдено услуг: ' . $services_q
                 <p>Гастроэкскурсии, дегустации, прокат лодок, рыбалка на катере</p>
             </div>
             <div class="services-grid">
-                <?php echo '<div style="color:red;">Найдено услуг: ' . $services_query->found_posts . '</div>'; ?>
-                <?php // Для полной отладки можно раскомментировать следующую строку:
-                // echo '<pre>' . print_r($services_query, true) . '</pre>'; ?>
                 <?php while ($services_query->have_posts()) : $services_query->the_post(); ?>
                     <div class="service-card">
                         <?php $icon = get_post_meta(get_the_ID(), '_service_icon', true); ?>
