@@ -74,7 +74,6 @@ body {
 .nav-menu {
   display: flex !important;
   flex-direction: row;
-  gap: 2.2rem;
   list-style: none;
   align-items: center;
   justify-content: flex-end;
