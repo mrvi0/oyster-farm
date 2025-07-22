@@ -1,7 +1,7 @@
 /*
 Theme Name: Oyster Farm
 Description: Современная тема для компании гастроэкскурсий на устричную ферму
-Version: 3.25.0
+Version: 3.26.0
 Author: Mr Vi
 Author URI: https://t.me/b4dcat
 Theme URI: https://github.com/mrvi0/oyster-farm
@@ -746,6 +746,48 @@ section,
   padding-right: 2rem;
   box-sizing: border-box;
 }
+.gallery-grid-custom {
+  display: flex;
+  gap: 0;
+  width: 100%;
+  min-height: 520px;
+  margin-top: 2rem;
+}
+.gallery-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1 1 0;
+}
+.gallery-col-left {
+  flex: 0 0 38%;
+  max-width: 38%;
+}
+.gallery-col-right {
+  flex: 0 0 62%;
+  max-width: 62%;
+}
+.gallery-img {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 0;
+  margin: 0;
+  box-shadow: none;
+}
+.gallery-img-top {
+  height: 260px;
+  border-bottom: 4px solid #fff;
+}
+.gallery-img-bottom {
+  height: 260px;
+  border-top: 4px solid #fff;
+}
+.gallery-img-large {
+  height: 520px;
+  width: 100%;
+  border-left: 4px solid #fff;
+}
 @media (max-width: 900px) {
   .container { padding: 0 12px; }
   .services-grid, .products-grid, .blog-grid, .footer-content {
@@ -782,6 +824,10 @@ section,
   .products-grid { grid-template-columns: 1fr; gap: 1.2rem; }
   .product-image-bg { height: 220px; }
   .product-content-center { padding: 1.2rem 0.5rem; }
+  .gallery-grid-custom { flex-direction: column; min-height: unset; }
+  .gallery-col-left, .gallery-col-right { max-width: 100%; flex: 1 1 0; }
+  .gallery-img-top, .gallery-img-bottom, .gallery-img-large { height: 180px; border: none; }
+  .gallery-img-large { width: 100%; }
 }
 @media (max-width: 600px) {
   .hero-content h1 { font-size: 1.5rem; }

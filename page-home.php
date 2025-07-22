@@ -186,29 +186,37 @@ $services_query = new WP_Query([
     <section class="gallery-section" id="galery">
         <div class="container">
             <div class="section-header">
-                <h2><?php echo esc_html($gallery_title); ?></h2>
-                <?php if ($gallery_subtitle) : ?>
-                    <p><?php echo wp_kses_post($gallery_subtitle); ?></p>
-                <?php endif; ?>
+                <h2>Галерея</h2>
             </div>
-            <div class="gallery-grid">
-                <?php foreach ($gallery_items as $item) : ?>
-                    <?php if (!empty($item['image'])) : ?>
-                    <div class="gallery-item">
-                        <img src="<?php echo esc_url($item['image']); ?>" alt="<?php echo esc_attr($item['title']); ?>">
-                        <?php if (!empty($item['title']) || !empty($item['description'])) : ?>
-                            <div class="gallery-overlay">
-                                <?php if (!empty($item['title'])) : ?>
-                                    <h4><?php echo esc_html($item['title']); ?></h4>
-                                <?php endif; ?>
-                                <?php if (!empty($item['description'])) : ?>
-                                    <p><?php echo esc_html($item['description']); ?></p>
-                                <?php endif; ?>
-                            </div>
-                        <?php endif; ?>
-                    </div>
+            <div class="gallery-grid-custom">
+                <?php
+                $gallery_query = new WP_Query([
+                    'post_type' => 'gallery',
+                    'posts_per_page' => 3,
+                    'orderby' => 'menu_order',
+                    'order' => 'ASC',
+                ]);
+                $images = [];
+                if ($gallery_query->have_posts()) :
+                    while ($gallery_query->have_posts()) : $gallery_query->the_post();
+                        $images[] = get_the_post_thumbnail_url(get_the_ID(), 'large');
+                    endwhile; wp_reset_postdata();
+                endif;
+                // Выводим 3 картинки в нужной сетке
+                ?>
+                <div class="gallery-col gallery-col-left">
+                    <?php if (!empty($images[0])) : ?>
+                        <div class="gallery-img gallery-img-top" style="background-image:url('<?php echo esc_url($images[0]); ?>');"></div>
                     <?php endif; ?>
-                <?php endforeach; ?>
+                    <?php if (!empty($images[1])) : ?>
+                        <div class="gallery-img gallery-img-bottom" style="background-image:url('<?php echo esc_url($images[1]); ?>');"></div>
+                    <?php endif; ?>
+                </div>
+                <div class="gallery-col gallery-col-right">
+                    <?php if (!empty($images[2])) : ?>
+                        <div class="gallery-img gallery-img-large" style="background-image:url('<?php echo esc_url($images[2]); ?>');"></div>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </section>

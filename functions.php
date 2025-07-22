@@ -141,6 +141,33 @@ function oyster_farm_save_product_meta($post_id) {
 }
 add_action('save_post_product', 'oyster_farm_save_product_meta');
 
+// CPT Галерея
+function oyster_farm_register_gallery_cpt() {
+    $labels = [
+        'name' => 'Галерея',
+        'singular_name' => 'Фото',
+        'add_new' => 'Добавить фото',
+        'add_new_item' => 'Добавить новое фото',
+        'edit_item' => 'Редактировать фото',
+        'new_item' => 'Новое фото',
+        'view_item' => 'Просмотреть фото',
+        'search_items' => 'Искать фото',
+        'not_found' => 'Фото не найдены',
+        'not_found_in_trash' => 'В корзине фото не найдено',
+        'menu_name' => 'Галерея',
+    ];
+    $args = [
+        'labels' => $labels,
+        'public' => true,
+        'has_archive' => false,
+        'menu_icon' => 'dashicons-format-gallery',
+        'supports' => ['title', 'editor', 'thumbnail', 'page-attributes'],
+        'show_in_rest' => true,
+    ];
+    register_post_type('gallery', $args);
+}
+add_action('init', 'oyster_farm_register_gallery_cpt');
+
 // Добавляю секцию 'Контакты' в Customizer
 function oyster_farm_customize_register($wp_customize) {
     $wp_customize->add_section('contacts_section', [
