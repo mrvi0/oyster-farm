@@ -1,7 +1,7 @@
 /*
 Theme Name: Oyster Farm
 Description: Современная тема для компании гастроэкскурсий на устричную ферму
-Version: 3.29.1
+Version: 3.29.2
 Author: Mr Vi
 Author URI: https://t.me/b4dcat
 Theme URI: https://github.com/mrvi0/oyster-farm
@@ -917,104 +917,105 @@ section,
   color: var(--color-nav-link);
 } 
 .booking-form {
-    background: #f4f4f6;
-    border-radius: 0;
-    padding: 2.2rem 0 1.5rem 0;
-    text-align: center;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .booking-form h2 {
-    font-size: 2.6rem;
-    font-weight: 800;
-    margin-bottom: 1.2rem;
-    color: #111;
-    line-height: 1.15;
-  }
-  .booking-form-subtitle {
-    font-size: 1.35rem;
-    color: #222;
-    margin-bottom: 2.5rem;
-    font-weight: 400;
-  }
-  .booking-form-fields {
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-    align-items: stretch;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .booking-form-fields label {
-    display: block;
-    text-align: left;
-    font-size: 1rem;
-    color: #222;
-    font-weight: 400;
-  }
-  .booking-form-fields input[type="text"],
-  .booking-form-fields input[type="tel"],
-  .booking-form-fields input[type="number"],
-  .booking-form-fields textarea {
-    width: 100%;
-    padding: 1.1em 1.2em;
-    border: none;
-    border-radius: 6px;
-    background: #fff;
-    font-size: 1.15rem;
-    color: #111;
-    margin-top: 0.2em;
-    box-sizing: border-box;
-    font-family: inherit;
-    transition: box-shadow 0.18s;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  }
-  .booking-form-fields input[type="text"]:focus,
-  .booking-form-fields input[type="tel"]:focus,
-  .booking-form-fields input[type="number"]:focus,
-  .booking-form-fields textarea:focus {
-    outline: none;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.10);
-  }
-  .booking-form-privacy {
-    display: flex;
-    align-items: center;
-    font-size: 1rem;
-    color: #222;
-    gap: 0.7em;
-    margin-top: 0.5em;
-  }
-  .booking-form-privacy input[type="checkbox"] {
-    width: 1.1em;
-    height: 1.1em;
-    accent-color: #ffe600;
-    margin-right: 0.5em;
-  }
-  .booking-form-submit,
-  input.booking-form-submit,
-  button.booking-form-submit {
-    background: #ffe600;
-    color: #111;
-    font-weight: 700;
-    padding: 18px 38px;
-    border-radius: 30px;
-    font-size: 1.18rem;
-    border: none;
-    margin-top: 1.2rem;
-    cursor: pointer;
-    transition: background 0.18s;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    display: inline-block;
-  }
-  .booking-form-submit:hover,
-  input.booking-form-submit:hover,
-  button.booking-form-submit:hover {
-    background: #ffd600;
-    color: #111;
-  }
-  @media (max-width: 700px) {
-    .booking-form { padding: 2rem 0 1.5rem 0; }
-    .booking-form h2 { font-size: 1.3rem; }
-    .booking-form-subtitle { font-size: 1rem; }
-    .booking-form-fields { max-width: 100%; }
-  }
+  background: none;
+  border-radius: 0;
+  padding: 2.2rem 0 1.5rem 0;
+  text-align: center;
+  max-width: 100%;
+  margin: 0 auto;
+  box-shadow: none;
+}
+.booking-form h2 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  margin-bottom: 1.2rem;
+  color: #111;
+  line-height: 1.15;
+}
+.booking-form-subtitle {
+  font-size: 1.35rem;
+  color: #222;
+  margin-bottom: 2.5rem;
+  font-weight: 400;
+}
+.booking-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  align-items: stretch;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.booking-form-fields label {
+  display: block;
+  text-align: left;
+  font-size: 1rem;
+  color: #222;
+  font-weight: 400;
+}
+.booking-form-fields input[type="text"],
+.booking-form-fields input[type="tel"],
+.booking-form-fields input[type="number"],
+.booking-form-fields textarea {
+  width: 100%;
+  padding: 1.1em 1.2em;
+  border: none;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 1.15rem;
+  color: #111;
+  margin-top: 0.2em;
+  box-sizing: border-box;
+  font-family: inherit;
+  transition: box-shadow 0.18s;
+  box-shadow: none;
+}
+.booking-form-fields input[type="text"]:focus,
+.booking-form-fields input[type="tel"]:focus,
+.booking-form-fields input[type="number"]:focus,
+.booking-form-fields textarea:focus {
+  outline: none;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+}
+.booking-form-privacy {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #222;
+  gap: 0.7em;
+  margin-top: 0.5em;
+}
+.booking-form-privacy input[type="checkbox"] {
+  width: 1.1em;
+  height: 1.1em;
+  accent-color: #ffe600;
+  margin-right: 0.5em;
+}
+.booking-form-submit,
+input.booking-form-submit,
+button.booking-form-submit {
+  background: #ffe600;
+  color: #111;
+  font-weight: 700;
+  padding: 18px 38px;
+  border-radius: 30px;
+  font-size: 1.18rem;
+  border: none;
+  margin-top: 1.2rem;
+  cursor: pointer;
+  transition: background 0.18s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  display: inline-block;
+}
+.booking-form-submit:hover,
+input.booking-form-submit:hover,
+button.booking-form-submit:hover {
+  background: #ffd600;
+  color: #111;
+}
+@media (max-width: 700px) {
+  .booking-form { padding: 2rem 0 1.5rem 0; }
+  .booking-form h2 { font-size: 1.3rem; }
+  .booking-form-subtitle { font-size: 1rem; }
+  .booking-form-fields { max-width: 100%; }
+}
