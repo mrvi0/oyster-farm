@@ -100,39 +100,36 @@ function oyster_farm_customize_register($wp_customize) {
         'section' => 'contacts_section',
         'type' => 'text',
     ]);
-    $wp_customize->add_setting('contacts_phone', ['default' => '']);
-    $wp_customize->add_control('contacts_phone', [
-        'label' => 'Телефон',
-        'section' => 'contacts_section',
-        'type' => 'text',
-    ]);
-    $wp_customize->add_setting('contacts_email', ['default' => '']);
-    $wp_customize->add_control('contacts_email', [
-        'label' => 'Email',
-        'section' => 'contacts_section',
-        'type' => 'text',
-    ]);
     $wp_customize->add_setting('contacts_address_url', ['default' => '']);
     $wp_customize->add_control('contacts_address_url', [
         'label' => 'Ссылка на карту (URL для адреса)',
         'section' => 'contacts_section',
         'type' => 'text',
     ]);
-    // Соцсети (до 4)
-    for ($i = 1; $i <= 4; $i++) {
-        $wp_customize->add_setting("contacts_social_platform_$i", ['default' => '']);
-        $wp_customize->add_control("contacts_social_platform_$i", [
-            'label' => "Соцсеть $i — платформа (например, vk, telegram, instagram)",
-            'section' => 'contacts_section',
-            'type' => 'text',
-        ]);
-        $wp_customize->add_setting("contacts_social_url_$i", ['default' => '']);
-        $wp_customize->add_control("contacts_social_url_$i", [
-            'label' => "Соцсеть $i — ссылка",
-            'section' => 'contacts_section',
-            'type' => 'text',
-        ]);
-    }
+    $wp_customize->add_setting('contacts_phone', ['default' => '']);
+    $wp_customize->add_control('contacts_phone', [
+        'label' => 'Телефон',
+        'section' => 'contacts_section',
+        'type' => 'text',
+    ]);
+    $wp_customize->add_setting('contacts_vk', ['default' => '']);
+    $wp_customize->add_control('contacts_vk', [
+        'label' => 'VK',
+        'section' => 'contacts_section',
+        'type' => 'text',
+    ]);
+    $wp_customize->add_setting('contacts_telegram', ['default' => '']);
+    $wp_customize->add_control('contacts_telegram', [
+        'label' => 'Telegram',
+        'section' => 'contacts_section',
+        'type' => 'text',
+    ]);
+    $wp_customize->add_setting('contacts_instagram', ['default' => '']);
+    $wp_customize->add_control('contacts_instagram', [
+        'label' => 'Instagram',
+        'section' => 'contacts_section',
+        'type' => 'text',
+    ]);
     // В функцию oyster_farm_customize_register добавляю настройку для заголовка футер-меню
     $wp_customize->add_setting('footer_menu_title', ['default' => 'Меню']);
     $wp_customize->add_control('footer_menu_title', [

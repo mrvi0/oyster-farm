@@ -26,13 +26,17 @@
                 <?php endif; ?>
             </div>
         <?php endif; ?>
-        <?php if (!empty($contacts_social)) : ?>
-            <div class="footer-social">
-                <?php foreach ($contacts_social as $social) {
-                    echo '<a href="' . esc_url($social['url']) . '" target="_blank" rel="noopener" class="footer-social-link">' . esc_html($social['platform']) . '</a>';
-                } ?>
-            </div>
-        <?php endif; ?>
+        <div class="footer-social">
+            <?php if (get_theme_mod('contacts_vk')) : ?>
+                <a href="<?php echo esc_url(get_theme_mod('contacts_vk')); ?>" target="_blank" rel="noopener" class="footer-social-link"><i class="fab fa-vk"></i></a>
+            <?php endif; ?>
+            <?php if (get_theme_mod('contacts_telegram')) : ?>
+                <a href="<?php echo esc_url(get_theme_mod('contacts_telegram')); ?>" target="_blank" rel="noopener" class="footer-social-link"><i class="fab fa-telegram-plane"></i></a>
+            <?php endif; ?>
+            <?php if (get_theme_mod('contacts_instagram')) : ?>
+                <a href="<?php echo esc_url(get_theme_mod('contacts_instagram')); ?>" target="_blank" rel="noopener" class="footer-social-link"><i class="fab fa-instagram"></i></a>
+            <?php endif; ?>
+        </div>
     </div>
     <div class="footer-bottom">
         <div class="footer-copyright">&copy; <?php echo date('Y'); ?> Oyster Farm</div>
