@@ -436,7 +436,7 @@ section,
 }
 .footer-author-terminal span.typewriter {
   overflow: hidden;
-  border-right: 0.25em solid #00ff00;
+  border-right: 1em solid #00ff00;
   white-space: nowrap;
   font-size: 1em;
   display: inline-block;
