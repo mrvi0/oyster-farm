@@ -96,30 +96,31 @@ $services_query = new WP_Query([
     <section class="products-section" id="items">
         <div class="container">
             <div class="section-header">
-                <h2><?php echo esc_html($products_title); ?></h2>
-                <?php if ($products_subtitle) : ?>
-                    <p><?php echo wp_kses_post($products_subtitle); ?></p>
-                <?php endif; ?>
+                <h2>Продукция</h2>
             </div>
             <div class="products-grid">
-                <?php foreach ($products_items as $product) : ?>
-                    <?php if (!empty($product['title'])) : ?>
-                    <div class="product-card">
-                        <?php if (!empty($product['image'])) : ?>
-                            <div class="product-image">
-                                <img src="<?php echo esc_url($product['image']); ?>" alt="<?php echo esc_attr($product['title']); ?>">
-                            </div>
-                        <?php endif; ?>
-                        <div class="product-content">
-                            <h3><?php echo esc_html($product['title']); ?></h3>
-                            <p><?php echo esc_html($product['description']); ?></p>
-                            <?php if (!empty($product['price'])) : ?>
-                                <div class="product-price"><?php echo esc_html($product['price']); ?></div>
-                            <?php endif; ?>
+                <?php
+                $products_query = new WP_Query([
+                    'post_type' => 'product',
+                    'posts_per_page' => -1,
+                    'orderby' => 'menu_order',
+                    'order' => 'ASC',
+                ]);
+                if ($products_query->have_posts()) :
+                    while ($products_query->have_posts()) : $products_query->the_post();
+                        $price = get_post_meta(get_the_ID(), '_product_price', true);
+                ?>
+                <div class="product-card">
+                    <div class="product-image-bg" style="background-image:url('<?php echo get_the_post_thumbnail_url(get_the_ID(), 'large'); ?>');">
+                        <div class="product-image-overlay"></div>
+                        <div class="product-content-center">
+                            <h3><?php the_title(); ?></h3>
+                            <div class="product-desc"><?php the_content(); ?></div>
+                            <?php if ($price) : ?><div class="product-price"><?php echo esc_html($price); ?> ₽</div><?php endif; ?>
                         </div>
                     </div>
-                    <?php endif; ?>
-                <?php endforeach; ?>
+                </div>
+                <?php endwhile; wp_reset_postdata(); endif; ?>
             </div>
         </div>
     </section>

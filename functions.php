@@ -89,6 +89,58 @@ function oyster_farm_save_service_meta($post_id) {
 }
 add_action('save_post_service', 'oyster_farm_save_service_meta');
 
+// CPT Продукция
+function oyster_farm_register_product_cpt() {
+    $labels = [
+        'name' => 'Продукция',
+        'singular_name' => 'Товар',
+        'add_new' => 'Добавить товар',
+        'add_new_item' => 'Добавить новый товар',
+        'edit_item' => 'Редактировать товар',
+        'new_item' => 'Новый товар',
+        'view_item' => 'Просмотреть товар',
+        'search_items' => 'Искать товары',
+        'not_found' => 'Товары не найдены',
+        'not_found_in_trash' => 'В корзине товаров не найдено',
+        'menu_name' => 'Продукция',
+    ];
+    $args = [
+        'labels' => $labels,
+        'public' => true,
+        'has_archive' => false,
+        'menu_icon' => 'dashicons-cart',
+        'supports' => ['title', 'editor', 'thumbnail'],
+        'show_in_rest' => true,
+    ];
+    register_post_type('product', $args);
+}
+add_action('init', 'oyster_farm_register_product_cpt');
+
+// Метаполя для товара: цена
+function oyster_farm_product_meta_boxes() {
+    add_meta_box(
+        'product_extra',
+        'Дополнительные поля товара',
+        'oyster_farm_product_meta_callback',
+        'product',
+        'normal',
+        'default'
+    );
+}
+add_action('add_meta_boxes', 'oyster_farm_product_meta_boxes');
+
+function oyster_farm_product_meta_callback($post) {
+    $price = get_post_meta($post->ID, '_product_price', true);
+    echo '<p><label>Цена: <input type="text" name="product_price" value="' . esc_attr($price) . '" style="width: 100%;" /></label></p>';
+}
+
+function oyster_farm_save_product_meta($post_id) {
+    if (array_key_exists('product_price', $_POST)) {
+        update_post_meta($post_id, '_product_price', sanitize_text_field($_POST['product_price']));
+    }
+}
+add_action('save_post_product', 'oyster_farm_save_product_meta');
+
 // Добавляю секцию 'Контакты' в Customizer
 function oyster_farm_customize_register($wp_customize) {
     $wp_customize->add_section('contacts_section', [

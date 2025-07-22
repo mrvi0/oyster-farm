@@ -11,15 +11,6 @@ function oyster_farm_add_meta_boxes() {
     );
     
     add_meta_box(
-        'products_section',
-        'Блок продукции',
-        'oyster_farm_products_callback',
-        'page',
-        'normal',
-        'high'
-    );
-    
-    add_meta_box(
         'reviews_section',
         'Блок отзывов',
         'oyster_farm_reviews_callback',
@@ -86,46 +77,6 @@ function oyster_farm_hero_callback($post) {
     echo '<tr><th><label for="hero_background">Фоновая картинка</label></th>';
     echo '<td><input type="text" id="hero_background" name="hero_background" value="' . esc_attr($hero_background) . '" style="width: 100%;" />';
     echo '<button type="button" class="button" onclick="selectImage(\'hero_background\')">Выбрать изображение</button></td></tr>';
-    echo '</table>';
-}
-
-// Продукция секция
-function oyster_farm_products_callback($post) {
-    wp_nonce_field('oyster_farm_save_meta_box_data', 'oyster_farm_meta_box_nonce');
-    
-    $products_title = get_post_meta($post->ID, '_products_title', true);
-    $products_subtitle = get_post_meta($post->ID, '_products_subtitle', true);
-    $products_items = get_post_meta($post->ID, '_products_items', true);
-    
-    if (!is_array($products_items)) {
-        $products_items = [
-            ['title' => '', 'description' => '', 'image' => '', 'price' => '']
-        ];
-    }
-    
-    echo '<table class="form-table">';
-    echo '<tr><th><label for="products_title">Заголовок секции</label></th>';
-    echo '<td><input type="text" id="products_title" name="products_title" value="' . esc_attr($products_title) . '" style="width: 100%;" /></td></tr>';
-    
-    echo '<tr><th><label for="products_subtitle">Подзаголовок</label></th>';
-    echo '<td><textarea id="products_subtitle" name="products_subtitle" style="width: 100%; height: 60px;">' . $products_subtitle . '</textarea></td></tr>';
-    
-    echo '<tr><th><label>Продукты</label></th><td>';
-    echo '<div id="products-container">';
-    foreach ($products_items as $index => $item) {
-        echo '<div class="product-item" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px;">';
-        echo '<h4>Продукт ' . ($index + 1) . '</h4>';
-        echo '<p><label>Название: <input type="text" name="products_items[' . $index . '][title]" value="' . esc_attr($item['title']) . '" style="width: 100%;" /></label></p>';
-        echo '<p><label>Описание: <textarea name="products_items[' . $index . '][description]" style="width: 100%; height: 60px;">' . esc_textarea($item['description']) . '</textarea></label></p>';
-        echo '<p><label>Изображение: <input type="text" name="products_items[' . $index . '][image]" value="' . esc_attr($item['image']) . '" style="width: 100%;" />';
-        echo '<button type="button" class="button" onclick="selectImage(\'products_items[' . $index . '][image]\')">Выбрать</button></label></p>';
-        echo '<p><label>Цена: <input type="text" name="products_items[' . $index . '][price]" value="' . esc_attr($item['price']) . '" /></label></p>';
-        echo '<button type="button" class="button remove-product">Удалить продукт</button>';
-        echo '</div>';
-    }
-    echo '</div>';
-    echo '<button type="button" class="button" id="add-product">Добавить продукт</button>';
-    echo '</td></tr>';
     echo '</table>';
 }
 
@@ -290,17 +241,6 @@ function oyster_farm_save_meta_box_data($post_id) {
     }
     if (isset($_POST['hero_background'])) {
         update_post_meta($post_id, '_hero_background', esc_url_raw($_POST['hero_background']));
-    }
-    
-    // Продукция
-    if (isset($_POST['products_title'])) {
-        update_post_meta($post_id, '_products_title', sanitize_text_field($_POST['products_title']));
-    }
-    if (isset($_POST['products_subtitle'])) {
-        update_post_meta($post_id, '_products_subtitle', $_POST['products_subtitle']);
-    }
-    if (isset($_POST['products_items'])) {
-        update_post_meta($post_id, '_products_items', $_POST['products_items']);
     }
     
     // Отзывы

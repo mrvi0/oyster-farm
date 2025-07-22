@@ -1,7 +1,7 @@
 /*
 Theme Name: Oyster Farm
 Description: Современная тема для компании гастроэкскурсий на устричную ферму
-Version: 3.24.0
+Version: 3.25.0
 Author: Mr Vi
 Author URI: https://t.me/b4dcat
 Theme URI: https://github.com/mrvi0/oyster-farm
@@ -311,16 +311,70 @@ section,
 .products-section { background: var(--color-bg); }
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
+  margin-top: 2rem;
 }
 .product-card {
-  background: var(--color-block);
+  position: relative;
   border-radius: var(--radius);
-  box-shadow: none;
   overflow: hidden;
-  border: 1px solid var(--color-border);
-  transition: box-shadow var(--transition), transform var(--transition);
+  min-height: 340px;
+  box-shadow: none;
+  background: none;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+.product-image-bg {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 1;
+}
+.product-content-center {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  padding: 2.2rem 1.2rem 1.2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.product-content-center h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+  color: #fff;
+}
+.product-desc {
+  font-size: 1.08rem;
+  margin-bottom: 1.1rem;
+  color: #fff;
+}
+.product-price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(0,0,0,0.25);
+  border-radius: 1.2em;
+  padding: 0.4em 1.2em;
+  margin-top: 0.5em;
+  display: inline-block;
 }
 .product-card:hover {
   box-shadow: 0 6px 24px rgba(0,0,0,0.08);
@@ -725,6 +779,9 @@ section,
   .site-logo-text { font-size: 1.3rem; }
   .header-menu { margin-top: 0.2rem; }
   .nav-menu { gap: 1.2rem; }
+  .products-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+  .product-image-bg { height: 220px; }
+  .product-content-center { padding: 1.2rem 0.5rem; }
 }
 @media (max-width: 600px) {
   .hero-content h1 { font-size: 1.5rem; }
