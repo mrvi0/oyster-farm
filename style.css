@@ -1,7 +1,7 @@
 /*
 Theme Name: Oyster Farm
 Description: Современная тема для компании гастроэкскурсий на устричную ферму
-Version: 3.15.0
+Version: 3.16.0
 Author: Mr Vi
 Author URI: https://t.me/b4dcat
 Theme URI: https://github.com/mrvi0/oyster-farm
@@ -238,9 +238,10 @@ section,
   align-items: flex-start;
 }
 .service-card h3 {
-  font-size: 1.18rem;
+  font-size: 1.60rem;
   font-weight: 700;
   color: var(--color-text);
+  margin-top: 0.6rem;
   margin-bottom: 0.6rem;
   text-align: center;
 }
