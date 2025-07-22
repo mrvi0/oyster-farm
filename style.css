@@ -136,7 +136,7 @@ body {
   padding: 0;
 }
 .nav-menu a {
-  color: #111;
+  color: var(--color-nav-link);
   text-decoration: none;
   transition: color var(--transition);
   background: none;
@@ -147,7 +147,7 @@ body {
   font-weight: bold;
 }
 .nav-menu a:hover {
-  color: var(--color-accent);
+  color: var(--color-nav-link-hover);
 }
 
 .hero-section {
