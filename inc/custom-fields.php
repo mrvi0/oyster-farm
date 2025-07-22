@@ -29,6 +29,15 @@ function oyster_farm_add_meta_boxes() {
     );
 
     add_meta_box(
+        'main_gallery_section',
+        'Галерея (несколько фото)',
+        'oyster_farm_main_gallery_callback',
+        'page',
+        'normal',
+        'high'
+    );
+
+    add_meta_box(
         'contact_form_shortcode',
         'Код контактной формы (Contact Form 7)',
         function($post) {
@@ -160,6 +169,49 @@ function oyster_farm_contacts_callback($post) {
     echo '</table>';
 }
 
+// Галерея секция
+function oyster_farm_main_gallery_callback($post) {
+    $gallery = get_post_meta($post->ID, '_main_gallery', true);
+    if (!is_array($gallery)) $gallery = [];
+    echo '<div id="main-gallery-wrapper">';
+    echo '<input type="hidden" id="main_gallery" name="main_gallery" value="' . esc_attr(implode(",", $gallery)) . '" />';
+    echo '<button type="button" class="button" id="main_gallery_upload">Выбрать изображения</button>';
+    echo '<div id="main_gallery_preview" style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">';
+    foreach ($gallery as $img_id) {
+        $img_url = wp_get_attachment_image_url($img_id, 'thumbnail');
+        if ($img_url) echo '<img src="' . esc_url($img_url) . '" style="width:80px;height:80px;object-fit:cover;border-radius:6px;">';
+    }
+    echo '</div>';
+    echo '</div>';
+    ?>
+    <script>
+    jQuery(function($){
+        var frame;
+        $('#main_gallery_upload').on('click', function(e){
+            e.preventDefault();
+            if (frame) { frame.open(); return; }
+            frame = wp.media({
+                title: 'Выбрать изображения',
+                button: { text: 'Добавить' },
+                multiple: true
+            });
+            frame.on('select', function(){
+                var ids = [];
+                var preview = '';
+                frame.state().get('selection').each(function(attachment){
+                    ids.push(attachment.id);
+                    preview += '<img src="'+attachment.attributes.sizes.thumbnail.url+'" style="width:80px;height:80px;object-fit:cover;border-radius:6px;">';
+                });
+                $('#main_gallery').val(ids.join(','));
+                $('#main_gallery_preview').html(preview);
+            });
+            frame.open();
+        });
+    });
+    </script>
+    <?php
+}
+
 // Сохранение данных
 function oyster_farm_save_meta_box_data($post_id) {
     if (!isset($_POST['oyster_farm_meta_box_nonce'])) {
@@ -224,6 +276,11 @@ function oyster_farm_save_meta_box_data($post_id) {
     }
     if (isset($_POST['contacts_social'])) {
         update_post_meta($post_id, '_contacts_social', $_POST['contacts_social']);
+    }
+
+    if (isset($_POST['main_gallery'])) {
+        $ids = array_filter(array_map('intval', explode(',', $_POST['main_gallery'])));
+        update_post_meta($post_id, '_main_gallery', $ids);
     }
 
     if (isset($_POST['contact_form_shortcode'])) {

@@ -188,38 +188,34 @@ $services_query = new WP_Query([
             <div class="section-header">
                 <h2>Галерея</h2>
             </div>
-            <div class="gallery-grid-custom">
+            <div class="gallery-scroll">
                 <?php
-                $gallery_query = new WP_Query([
-                    'post_type' => 'gallery',
-                    'posts_per_page' => 3,
-                    'orderby' => 'menu_order',
-                    'order' => 'ASC',
-                ]);
-                $images = [];
-                if ($gallery_query->have_posts()) :
-                    while ($gallery_query->have_posts()) : $gallery_query->the_post();
-                        $images[] = get_the_post_thumbnail_url(get_the_ID(), 'large');
-                    endwhile; wp_reset_postdata();
-                endif;
-                // Выводим 3 картинки в нужной сетке
+                $gallery = get_post_meta(get_the_ID(), '_main_gallery', true);
+                if (is_array($gallery) && !empty($gallery)) :
+                    foreach ($gallery as $img_id) :
+                        $img_url = wp_get_attachment_image_url($img_id, 'large');
+                        if ($img_url) :
                 ?>
-                <div class="gallery-col gallery-col-left">
-                    <?php if (!empty($images[0])) : ?>
-                        <div class="gallery-img gallery-img-top" style="background-image:url('<?php echo esc_url($images[0]); ?>');"></div>
-                    <?php endif; ?>
-                    <?php if (!empty($images[1])) : ?>
-                        <div class="gallery-img gallery-img-bottom" style="background-image:url('<?php echo esc_url($images[1]); ?>');"></div>
-                    <?php endif; ?>
-                </div>
-                <div class="gallery-col gallery-col-right">
-                    <?php if (!empty($images[2])) : ?>
-                        <div class="gallery-img gallery-img-large" style="background-image:url('<?php echo esc_url($images[2]); ?>');"></div>
-                    <?php endif; ?>
-                </div>
+                    <a href="<?php echo esc_url($img_url); ?>" class="gallery-lightbox"><img src="<?php echo esc_url($img_url); ?>" alt="" class="gallery-thumb"></a>
+                <?php endif; endforeach; endif; ?>
             </div>
         </div>
     </section>
+    <script>
+    document.addEventListener('DOMContentLoaded', function(){
+        document.querySelectorAll('.gallery-lightbox').forEach(function(link){
+            link.addEventListener('click', function(e){
+                e.preventDefault();
+                var src = this.href;
+                var modal = document.createElement('div');
+                modal.className = 'gallery-modal';
+                modal.innerHTML = '<div class="gallery-modal-bg"></div><img src="'+src+'" class="gallery-modal-img">';
+                document.body.appendChild(modal);
+                modal.onclick = function(){ document.body.removeChild(modal); };
+            });
+        });
+    });
+    </script>
     <?php endif; ?>
 
     <!-- Contacts Section -->
