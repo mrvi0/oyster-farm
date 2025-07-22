@@ -4,6 +4,7 @@ function oyster_farm_enqueue_scripts() {
     wp_enqueue_style('oyster-farm-style', get_stylesheet_uri());
     // wp_enqueue_style('oyster-farm-main', get_template_directory_uri() . '/assets/css/main.css', [], '1.1'); // отключено для устранения конфликтов
     wp_enqueue_script('oyster-farm-main', get_template_directory_uri() . '/assets/js/main.js', [], '1.1', true);
+    wp_enqueue_style('fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css', [], '5.15.4');
 }
 add_action('wp_enqueue_scripts', 'oyster_farm_enqueue_scripts');
 
