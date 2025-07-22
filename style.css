@@ -39,7 +39,6 @@ body {
 }
 
 .site-header {
-  background: #111;
   color: #fff;
     width: 100%;
     min-height: 48px;
@@ -733,4 +732,15 @@ section,
   .footer-phone { font-size: 1.3rem; }
   .footer-email { font-size: 1rem; }
   .footer-social-link { font-size: 1.5rem; }
+} 
+
+.header-address-link, .header-phone-link {
+  color: #111;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.header-address-link:hover, .header-phone-link:hover {
+  color: #1a9ecb;
+  text-decoration: underline dotted;
 } 

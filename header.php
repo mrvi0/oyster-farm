@@ -9,7 +9,17 @@
 <header class="site-header">
     <div class="container header-content header-flex">
         <div class="header-address">
-            <?php $address = get_theme_mod('contacts_address'); if ($address) echo esc_html($address); ?>
+            <?php 
+            $address = get_theme_mod('contacts_address'); 
+            $address_url = get_theme_mod('contacts_address_url');
+            if ($address) {
+                if ($address_url) {
+                    echo '<a href="' . esc_url($address_url) . '" target="_blank" rel="noopener" class="header-address-link">' . esc_html($address) . '</a>';
+                } else {
+                    echo esc_html($address);
+                }
+            }
+            ?>
         </div>
         <div class="header-logo">
             <?php if (has_custom_logo()) {
@@ -19,7 +29,12 @@
             <?php } ?>
         </div>
         <div class="header-phone">
-            <?php $phone = get_theme_mod('contacts_phone'); if ($phone) echo esc_html($phone); ?>
+            <?php 
+            $phone = get_theme_mod('contacts_phone'); 
+            if ($phone) {
+                echo '<a href="tel:' . esc_attr($phone) . '" class="header-phone-link">' . esc_html($phone) . '</a>';
+            }
+            ?>
         </div>
     </div>
     <div class="container header-menu">
