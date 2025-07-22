@@ -1,7 +1,7 @@
 /*
 Theme Name: Oyster Farm
 Description: Современная тема для компании гастроэкскурсий на устричную ферму
-Version: 3.23.0
+Version: 3.24.0
 Author: Mr Vi
 Author URI: https://t.me/b4dcat
 Theme URI: https://github.com/mrvi0/oyster-farm
@@ -71,12 +71,53 @@ body {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
+.header-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2.2rem 0 1.2rem 0;
+}
+.header-address, .header-phone {
+  font-size: 1.15rem;
+  color: #111;
+  font-weight: 400;
+  min-width: 180px;
+  text-align: left;
+}
+.header-phone {
+  text-align: right;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+.header-logo {
+  flex: 1 1 auto;
+  text-align: center;
+}
+.site-logo-text {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1a9ecb;
+  text-decoration: none;
+  font-family: 'PT Serif', 'Georgia', serif;
+  letter-spacing: 1px;
+  display: inline-block;
+}
+.header-logo img.custom-logo {
+  max-height: 70px;
+  width: auto;
+  display: inline-block;
+}
+.header-menu {
+  margin-top: 0.5rem;
+  text-align: center;
+}
 .nav-menu {
-  display: flex !important;
+  display: inline-flex !important;
   flex-direction: row;
+  gap: 2.2rem;
   list-style: none;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   background: none;
   padding: 0;
   margin: 0;
@@ -670,6 +711,12 @@ section,
     padding-left: 1rem;
     padding-right: 1rem;
   }
+  .header-flex { flex-direction: column; gap: 0.7rem; padding: 1.2rem 0 0.7rem 0; }
+  .header-address, .header-phone { min-width: unset; text-align: center; font-size: 1rem; }
+  .header-logo { margin: 0.5rem 0; }
+  .site-logo-text { font-size: 1.3rem; }
+  .header-menu { margin-top: 0.2rem; }
+  .nav-menu { gap: 1.2rem; }
 }
 @media (max-width: 600px) {
   .hero-content h1 { font-size: 1.5rem; }
