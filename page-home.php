@@ -216,43 +216,6 @@ $services_query = new WP_Query([
         });
     });
     </script>
-    <script>
-// Drag-to-scroll
-(function(){
-  var el = document.querySelector('.gallery-scroll');
-  if (!el) return;
-  let isDown = false, startX, scrollLeft;
-  el.addEventListener('mousedown', function(e){
-    isDown = true;
-    el.classList.add('dragging');
-    startX = e.pageX - el.offsetLeft;
-    scrollLeft = el.scrollLeft;
-  });
-  el.addEventListener('mouseleave', function(){ isDown = false; el.classList.remove('dragging'); });
-  el.addEventListener('mouseup', function(){ isDown = false; el.classList.remove('dragging'); });
-  el.addEventListener('mousemove', function(e){
-    if (!isDown) return;
-    e.preventDefault();
-    var x = e.pageX - el.offsetLeft;
-    var walk = (x - startX) * 1.2;
-    el.scrollLeft = scrollLeft - walk;
-  });
-  // Touch
-  let touchStartX, touchScrollLeft;
-  el.addEventListener('touchstart', function(e){
-    isDown = true;
-    touchStartX = e.touches[0].pageX;
-    touchScrollLeft = el.scrollLeft;
-  });
-  el.addEventListener('touchend', function(){ isDown = false; });
-  el.addEventListener('touchmove', function(e){
-    if (!isDown) return;
-    var x = e.touches[0].pageX;
-    var walk = (x - touchStartX) * 1.2;
-    el.scrollLeft = touchScrollLeft - walk;
-  });
-})();
-</script>
     <?php endif; ?>
 
     <!-- Contacts Section -->

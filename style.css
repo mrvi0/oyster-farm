@@ -1,7 +1,7 @@
 /*
 Theme Name: Oyster Farm
 Description: Современная тема для компании гастроэкскурсий на устричную ферму
-Version: 3.28.0
+Version: 3.29.0
 Author: Mr Vi
 Author URI: https://t.me/b4dcat
 Theme URI: https://github.com/mrvi0/oyster-farm
@@ -790,21 +790,19 @@ section,
 }
 .gallery-scroll {
   display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-auto-flow: column;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 320px;
+  gap: 0;
   width: 100%;
-  min-height: 400px;
-  max-height: 520px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  max-height: 700px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  -ms-overflow-style: auto;
   user-select: none;
-  cursor: grab;
 }
-.gallery-scroll::-webkit-scrollbar { display: none; }
 .gallery-thumb {
-  width: 420px;
+  width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 0;
@@ -814,9 +812,8 @@ section,
 }
 .gallery-scroll a {
   display: block;
-  width: 420px;
+  width: 100%;
   height: 100%;
-  grid-row: span 1;
 }
 .gallery-scroll a:nth-child(2n) {
   grid-row: 2;
@@ -896,9 +893,9 @@ section,
   .gallery-img-large { width: 100%; }
   .gallery-thumb { width: 140px; height: 90px; }
   .gallery-scroll {
-    grid-template-rows: 1fr;
-    min-height: 180px;
-    max-height: 220px;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 180px;
+    max-height: 400px;
   }
   .gallery-thumb, .gallery-scroll a { width: 180px; height: 100%; }
 }
