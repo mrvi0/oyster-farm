@@ -73,7 +73,7 @@ $services_query = new WP_Query([
                         <?php endif; ?>
                         <?php if (has_post_thumbnail()) : ?>
                             <div class="service-image">
-                                <?php the_post_thumbnail('medium'); ?>
+                                <?php the_post_thumbnail('large'); ?>
                             </div>
                         <?php endif; ?>
                         <h3><?php the_title(); ?></h3>
