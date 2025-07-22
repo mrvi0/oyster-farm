@@ -58,7 +58,7 @@ $services_query = new WP_Query([
     <!-- Services Section -->
     <?php 
     if ($services_query->have_posts()) : ?>
-    <section class="services-section">
+    <section class="services-section" id="service">
         <div class="container">
             <div class="section-header">
                 <h2>Наши услуги</h2>
@@ -93,7 +93,7 @@ $services_query = new WP_Query([
     <!-- Products Section -->
     <?php 
     if ($products_title && is_array($products_items) && !empty($products_items)) : ?>
-    <section class="products-section">
+    <section class="products-section" id="items">
         <div class="container">
             <div class="section-header">
                 <h2><?php echo esc_html($products_title); ?></h2>
@@ -182,7 +182,7 @@ $services_query = new WP_Query([
     $gallery_items = get_post_meta(get_the_ID(), '_gallery_items', true);
     
     if ($gallery_title && is_array($gallery_items) && !empty($gallery_items)) : ?>
-    <section class="gallery-section">
+    <section class="gallery-section" id="galery">
         <div class="container">
             <div class="section-header">
                 <h2><?php echo esc_html($gallery_title); ?></h2>
@@ -216,7 +216,7 @@ $services_query = new WP_Query([
     <!-- Contacts Section -->
     <?php 
     if ($contacts_title) : ?>
-    <section class="contacts-section" id="contacts">
+    <section class="contacts-section" id="book">
         <div class="container">
             <div class="section-header">
                 <h2>Запись</h2>
