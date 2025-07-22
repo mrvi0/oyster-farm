@@ -112,6 +112,12 @@ function oyster_farm_customize_register($wp_customize) {
         'section' => 'contacts_section',
         'type' => 'text',
     ]);
+    $wp_customize->add_setting('contacts_address_url', ['default' => '']);
+    $wp_customize->add_control('contacts_address_url', [
+        'label' => 'Ссылка на карту (URL для адреса)',
+        'section' => 'contacts_section',
+        'type' => 'text',
+    ]);
     // Соцсети (до 4)
     for ($i = 1; $i <= 4; $i++) {
         $wp_customize->add_setting("contacts_social_platform_$i", ['default' => '']);

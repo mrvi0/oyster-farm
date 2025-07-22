@@ -15,7 +15,7 @@
     ?>
     <div class="footer-main">
         <?php if ($contacts_phone) : ?>
-            <div class="footer-phone"><?php echo esc_html($contacts_phone); ?></div>
+            <div class="footer-phone"><a href="tel:<?php echo esc_attr($contacts_phone); ?>" class="footer-phone-link"><?php echo esc_html($contacts_phone); ?></a></div>
         <?php endif; ?>
         <?php if ($contacts_address) : ?>
             <div class="footer-address">
@@ -38,7 +38,7 @@
         <div class="footer-copyright">&copy; <?php echo date('Y'); ?> Oyster Farm</div>
         <div class="footer-author-terminal">
             <span class="footer-terminal-icon">&gt;_</span>
-            <span>Made by <a href="https://t.me/b4dcat" target="_blank" rel="noopener">Mr Vi</a></span>
+            <span class="typewriter">Made by <a href="https://t.me/b4dcat" target="_blank" rel="noopener">Mr Vi</a></span>
         </div>
     </div>
 </footer>
