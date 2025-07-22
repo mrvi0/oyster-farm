@@ -224,7 +224,7 @@ $services_query = new WP_Query([
     <section class="contacts-section" id="book">
         <div class="container">
             <div class="section-header">
-                <h2>Запись</h2>
+                <h2>Запишитесь на гастрономическую экскурсию, на Устричную ферму</h2>
             </div>
             <?php 
             $contact_form_shortcode = get_post_meta(get_the_ID(), '_contact_form_shortcode', true);

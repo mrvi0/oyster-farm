@@ -1,7 +1,7 @@
 /*
 Theme Name: Oyster Farm
 Description: Современная тема для компании гастроэкскурсий на устричную ферму
-Version: 3.29.0
+Version: 3.29.1
 Author: Mr Vi
 Author URI: https://t.me/b4dcat
 Theme URI: https://github.com/mrvi0/oyster-farm
@@ -919,7 +919,7 @@ section,
 .booking-form {
     background: #f4f4f6;
     border-radius: 0;
-    padding: 3.5rem 0 2.5rem 0;
+    padding: 2.2rem 0 1.5rem 0;
     text-align: center;
     max-width: 900px;
     margin: 0 auto;
@@ -940,9 +940,9 @@ section,
   .booking-form-fields {
     display: flex;
     flex-direction: column;
-    gap: 1.3rem;
+    gap: 0.7rem;
     align-items: stretch;
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
   }
   .booking-form-fields label {
