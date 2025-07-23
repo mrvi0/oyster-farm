@@ -36,8 +36,9 @@
             }
             ?>
         </div>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Открыть меню"><span></span><span></span><span></span></button>
     </div>
-    <div class="container header-menu">
+    <div class="container header-menu" id="desktopMenu">
         <nav>
             <?php
             wp_nav_menu([
@@ -48,5 +49,16 @@
             ?>
         </nav>
     </div>
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <nav class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Закрыть меню">&times;</button>
+        <?php
+        wp_nav_menu([
+            'theme_location' => 'main_menu',
+            'menu_class' => 'mobile-nav-menu',
+            'container' => false
+        ]);
+        ?>
+    </nav>
 </header>
 <main> 
