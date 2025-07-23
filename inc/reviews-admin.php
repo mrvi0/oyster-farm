@@ -26,19 +26,21 @@ add_action('admin_enqueue_scripts', 'oyster_farm_reviews_admin_scripts');
 
 // Страница настроек отзывов
 function oyster_farm_reviews_admin_page() {
-    if (isset($_POST['submit'])) {
-        $reviews_settings = [
-            'title' => sanitize_text_field($_POST['reviews_title'] ?? ''),
-            'subtitle' => wp_kses_post($_POST['reviews_subtitle'] ?? ''),
-            'items' => $_POST['reviews_items'] ?? []
-        ];
-        update_option('oyster_farm_reviews_settings', $reviews_settings);
-        echo '<div class="notice notice-success"><p>Настройки отзывов сохранены!</p></div>';
-    }
+            if (isset($_POST['submit'])) {
+            $reviews_settings = [
+                'title' => sanitize_text_field($_POST['reviews_title'] ?? ''),
+                'subtitle' => wp_kses_post($_POST['reviews_subtitle'] ?? ''),
+                'external_reviews' => wp_kses_post($_POST['external_reviews'] ?? ''),
+                'items' => $_POST['reviews_items'] ?? []
+            ];
+            update_option('oyster_farm_reviews_settings', $reviews_settings);
+            echo '<div class="notice notice-success"><p>Настройки отзывов сохранены!</p></div>';
+        }
 
     $reviews_settings = get_option('oyster_farm_reviews_settings', []);
     $reviews_title = $reviews_settings['title'] ?? 'Отзывы клиентов';
     $reviews_subtitle = $reviews_settings['subtitle'] ?? '';
+    $external_reviews = $reviews_settings['external_reviews'] ?? '';
     $reviews_items = $reviews_settings['items'] ?? [
         ['name' => '', 'text' => '', 'photo' => '', 'rating' => '5', 'date' => '']
     ];
@@ -56,7 +58,14 @@ function oyster_farm_reviews_admin_page() {
                     <td><textarea id="reviews_subtitle" name="reviews_subtitle" rows="3" class="large-text"><?php echo esc_textarea($reviews_subtitle); ?></textarea></td>
                 </tr>
                 <tr>
-                    <th><label>Отзывы</label></th>
+                    <th><label for="external_reviews">Внешние отзывы (приоритет)</label></th>
+                    <td>
+                        <textarea id="external_reviews" name="external_reviews" rows="6" class="large-text" placeholder="Вставьте iframe код или ссылку на отзывы (Яндекс.Карты, Google Reviews и т.д.)"><?php echo esc_textarea($external_reviews); ?></textarea>
+                        <p class="description">Если указано, будет отображаться вместо обычных отзывов. Поддерживает HTML код (iframe, script и т.д.)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label>Обычные отзывы</label></th>
                     <td>
                         <div id="reviews-container">
                             <?php foreach ($reviews_items as $index => $item) : ?>

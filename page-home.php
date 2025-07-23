@@ -131,9 +131,10 @@ $services_query = new WP_Query([
     $reviews_settings = get_option('oyster_farm_reviews_settings', []);
     $reviews_title = $reviews_settings['title'] ?? 'Отзывы клиентов';
     $reviews_subtitle = $reviews_settings['subtitle'] ?? '';
+    $external_reviews = $reviews_settings['external_reviews'] ?? '';
     $reviews_items = $reviews_settings['items'] ?? [];
     
-    if (!empty($reviews_items)) : ?>
+    if (!empty($external_reviews) || !empty($reviews_items)) : ?>
     <section class="reviews-section">
         <div class="container">
             <div class="section-header">
@@ -143,7 +144,14 @@ $services_query = new WP_Query([
                 <?php endif; ?>
             </div>
             <div class="reviews-container">
-                <?php foreach ($reviews_items as $index => $review) : ?>
+                <?php if (!empty($external_reviews)) : ?>
+                    <!-- Внешние отзывы -->
+                    <div class="external-reviews">
+                        <?php echo wp_kses_post($external_reviews); ?>
+                    </div>
+                <?php else : ?>
+                    <!-- Обычные отзывы -->
+                    <?php foreach ($reviews_items as $index => $review) : ?>
                     <?php if (!empty($review['name']) && !empty($review['text'])) : ?>
                     <div class="reviews-grid <?php echo ($index === 0) ? 'active' : ''; ?>" data-review="<?php echo $index; ?>">
                         <div class="review-card">
@@ -175,7 +183,7 @@ $services_query = new WP_Query([
                     <?php endif; ?>
                 <?php endforeach; ?>
                 
-                <?php if (count($reviews_items) > 1) : ?>
+                <?php if (empty($external_reviews) && count($reviews_items) > 1) : ?>
                 <div class="reviews-pagination">
                     <button class="prev-review" onclick="changeReview(-1)">←</button>
                     <?php 
@@ -188,10 +196,12 @@ $services_query = new WP_Query([
                     <button class="next-review" onclick="changeReview(1)">→</button>
                 </div>
                 <?php endif; ?>
+                <?php endif; ?>
             </div>
         </div>
     </section>
     
+    <?php if (empty($external_reviews)) : ?>
     <script>
     let currentReview = 0;
     const totalReviews = <?php echo count(array_filter($reviews_items, function($review) { return !empty($review['name']) && !empty($review['text']); })); ?>;
@@ -231,6 +241,7 @@ $services_query = new WP_Query([
         showReview(currentReview);
     }
     </script>
+    <?php endif; ?>
     <?php endif; ?>
 
     <!-- Gallery Section -->
