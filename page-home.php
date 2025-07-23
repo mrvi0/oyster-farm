@@ -142,39 +142,95 @@ $services_query = new WP_Query([
                     <p><?php echo wp_kses_post($reviews_subtitle); ?></p>
                 <?php endif; ?>
             </div>
-            <div class="reviews-grid">
-                <?php foreach ($reviews_items as $review) : ?>
+            <div class="reviews-container">
+                <?php foreach ($reviews_items as $index => $review) : ?>
                     <?php if (!empty($review['name']) && !empty($review['text'])) : ?>
-                    <div class="review-card">
-                        <div class="review-header">
-                            <?php if (!empty($review['photo'])) : ?>
-                                <div class="review-photo">
-                                    <img src="<?php echo esc_url($review['photo']); ?>" alt="<?php echo esc_attr($review['name']); ?>">
-                                </div>
-                            <?php endif; ?>
-                            <div class="review-info">
-                                <h4><?php echo esc_html($review['name']); ?></h4>
-                                <?php if (!empty($review['rating'])) : ?>
-                                    <div class="review-rating">
-                                        <?php for ($i = 1; $i <= 5; $i++) : ?>
-                                            <span class="star <?php echo ($i <= $review['rating']) ? 'filled' : ''; ?>">★</span>
-                                        <?php endfor; ?>
+                    <div class="reviews-grid <?php echo ($index === 0) ? 'active' : ''; ?>" data-review="<?php echo $index; ?>">
+                        <div class="review-card">
+                            <div class="review-header">
+                                <?php if (!empty($review['photo'])) : ?>
+                                    <div class="review-photo">
+                                        <img src="<?php echo esc_url($review['photo']); ?>" alt="<?php echo esc_attr($review['name']); ?>">
                                     </div>
                                 <?php endif; ?>
-                                <?php if (!empty($review['date'])) : ?>
-                                    <div class="review-date"><?php echo esc_html($review['date']); ?></div>
-                                <?php endif; ?>
+                                <div class="review-info">
+                                    <h4><?php echo esc_html($review['name']); ?></h4>
+                                    <?php if (!empty($review['rating'])) : ?>
+                                        <div class="review-rating">
+                                            <?php for ($i = 1; $i <= 5; $i++) : ?>
+                                                <span class="star <?php echo ($i <= $review['rating']) ? 'filled' : ''; ?>">★</span>
+                                            <?php endfor; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php if (!empty($review['date'])) : ?>
+                                        <div class="review-date"><?php echo esc_html($review['date']); ?></div>
+                                    <?php endif; ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="review-text">
-                            <p><?php echo esc_html($review['text']); ?></p>
+                            <div class="review-text">
+                                <p><?php echo esc_html($review['text']); ?></p>
+                            </div>
                         </div>
                     </div>
                     <?php endif; ?>
                 <?php endforeach; ?>
+                
+                <?php if (count($reviews_items) > 1) : ?>
+                <div class="reviews-pagination">
+                    <button class="prev-review" onclick="changeReview(-1)">←</button>
+                    <?php 
+                    $total_reviews = count(array_filter($reviews_items, function($review) {
+                        return !empty($review['name']) && !empty($review['text']);
+                    }));
+                    for ($i = 0; $i < $total_reviews; $i++) : ?>
+                        <button class="review-page <?php echo ($i === 0) ? 'current-page' : ''; ?>" onclick="goToReview(<?php echo $i; ?>)"><?php echo $i + 1; ?></button>
+                    <?php endfor; ?>
+                    <button class="next-review" onclick="changeReview(1)">→</button>
+                </div>
+                <?php endif; ?>
             </div>
         </div>
     </section>
+    
+    <script>
+    let currentReview = 0;
+    const totalReviews = <?php echo count(array_filter($reviews_items, function($review) { return !empty($review['name']) && !empty($review['text']); })); ?>;
+    
+    function showReview(index) {
+        // Скрываем все отзывы
+        document.querySelectorAll('.reviews-grid').forEach(grid => {
+            grid.classList.remove('active');
+        });
+        
+        // Показываем нужный отзыв
+        const targetGrid = document.querySelector(`[data-review="${index}"]`);
+        if (targetGrid) {
+            targetGrid.classList.add('active');
+        }
+        
+        // Обновляем пагинацию
+        document.querySelectorAll('.review-page').forEach((btn, i) => {
+            btn.classList.toggle('current-page', i === index);
+        });
+        
+        // Обновляем кнопки prev/next
+        document.querySelector('.prev-review').disabled = index === 0;
+        document.querySelector('.next-review').disabled = index === totalReviews - 1;
+    }
+    
+    function changeReview(direction) {
+        const newIndex = currentReview + direction;
+        if (newIndex >= 0 && newIndex < totalReviews) {
+            currentReview = newIndex;
+            showReview(currentReview);
+        }
+    }
+    
+    function goToReview(index) {
+        currentReview = index;
+        showReview(currentReview);
+    }
+    </script>
     <?php endif; ?>
 
     <!-- Gallery Section -->
