@@ -147,13 +147,13 @@ $services_query = new WP_Query([
                     <?php if (!empty($review['name']) && !empty($review['text'])) : ?>
                     <div class="reviews-grid <?php echo ($index === 0) ? 'active' : ''; ?>" data-review="<?php echo $index; ?>">
                         <div class="review-card">
-                            <div class="review-header">
-                                <?php if (!empty($review['photo'])) : ?>
-                                    <div class="review-photo">
-                                        <img src="<?php echo esc_url($review['photo']); ?>" alt="<?php echo esc_attr($review['name']); ?>">
-                                    </div>
-                                <?php endif; ?>
-                                <div class="review-info">
+                            <?php if (!empty($review['photo'])) : ?>
+                                <div class="review-photo">
+                                    <img src="<?php echo esc_url($review['photo']); ?>" alt="<?php echo esc_attr($review['name']); ?>">
+                                </div>
+                            <?php endif; ?>
+                            <div class="review-content">
+                                <div class="review-header">
                                     <h4><?php echo esc_html($review['name']); ?></h4>
                                     <?php if (!empty($review['rating'])) : ?>
                                         <div class="review-rating">
@@ -166,9 +166,9 @@ $services_query = new WP_Query([
                                         <div class="review-date"><?php echo esc_html($review['date']); ?></div>
                                     <?php endif; ?>
                                 </div>
-                            </div>
-                            <div class="review-text">
-                                <p><?php echo esc_html($review['text']); ?></p>
+                                <div class="review-text">
+                                    <p><?php echo esc_html($review['text']); ?></p>
+                                </div>
                             </div>
                         </div>
                     </div>
