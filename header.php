@@ -8,7 +8,7 @@
 <body <?php body_class(); ?>>
 <header class="site-header">
     <div class="container header-content header-flex">
-        <div class="header-address">
+        <div class="header-address mobile-hide">
             <?php 
             $address = get_theme_mod('contacts_address'); 
             $address_url = get_theme_mod('contacts_address_url');
