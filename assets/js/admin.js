@@ -55,41 +55,7 @@ jQuery(document).ready(function($) {
             $(this).find('h4').text('Продукт ' + (index + 1));
         });
     }
-    
-    // Отзывы
-    $('#add-review').on('click', function() {
-        var index = $('.review-item').length;
-        var newItem = `
-            <div class="review-item" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px;">
-                <h4>Отзыв ${index + 1}</h4>
-                <p><label>Имя: <input type="text" name="reviews_items[${index}][name]" style="width: 100%;" /></label></p>
-                <p><label>Текст отзыва: <textarea name="reviews_items[${index}][text]" style="width: 100%; height: 80px;"></textarea></label></p>
-                <p><label>Фото: <input type="text" name="reviews_items[${index}][photo]" style="width: 100%;" />
-                <button type="button" class="button" onclick="selectImage('reviews_items[${index}][photo]')">Выбрать</button></label></p>
-                <p><label>Рейтинг (1-5): <select name="reviews_items[${index}][rating]">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5" selected>5</option>
-                </select></label></p>
-                <p><label>Дата: <input type="text" name="reviews_items[${index}][date]" placeholder="01.01.2024" /></label></p>
-                <button type="button" class="button remove-review">Удалить отзыв</button>
-            </div>
-        `;
-        $('#reviews-container').append(newItem);
-    });
-    
-    $(document).on('click', '.remove-review', function() {
-        $(this).closest('.review-item').remove();
-        updateReviewNumbers();
-    });
-    
-    function updateReviewNumbers() {
-        $('.review-item').each(function(index) {
-            $(this).find('h4').text('Отзыв ' + (index + 1));
-        });
-    }
+
     
     // Галерея
     $('#add-gallery').on('click', function() {

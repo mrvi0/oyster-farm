@@ -32,6 +32,9 @@ add_action('after_setup_theme', 'oyster_farm_theme_setup');
 // Подключение кастомных полей
 require_once get_template_directory() . '/inc/custom-fields.php';
 
+// Подключение админки отзывов
+require_once get_template_directory() . '/inc/reviews-admin.php';
+
 // Регистрируем кастомный тип записи 'Услуги'
 function oyster_farm_register_service_cpt() {
     $labels = [
