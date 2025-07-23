@@ -126,7 +126,56 @@ $services_query = new WP_Query([
     </section>
     <?php endif; ?>
 
-
+    <!-- Reviews Section -->
+    <?php 
+    $reviews_settings = get_option('oyster_farm_reviews_settings', []);
+    $reviews_title = $reviews_settings['title'] ?? 'Отзывы клиентов';
+    $reviews_subtitle = $reviews_settings['subtitle'] ?? '';
+    $reviews_items = $reviews_settings['items'] ?? [];
+    
+    if (!empty($reviews_items)) : ?>
+    <section class="reviews-section">
+        <div class="container">
+            <div class="section-header">
+                <h2><?php echo esc_html($reviews_title); ?></h2>
+                <?php if ($reviews_subtitle) : ?>
+                    <p><?php echo wp_kses_post($reviews_subtitle); ?></p>
+                <?php endif; ?>
+            </div>
+            <div class="reviews-grid">
+                <?php foreach ($reviews_items as $review) : ?>
+                    <?php if (!empty($review['name']) && !empty($review['text'])) : ?>
+                    <div class="review-card">
+                        <div class="review-header">
+                            <?php if (!empty($review['photo'])) : ?>
+                                <div class="review-photo">
+                                    <img src="<?php echo esc_url($review['photo']); ?>" alt="<?php echo esc_attr($review['name']); ?>">
+                                </div>
+                            <?php endif; ?>
+                            <div class="review-info">
+                                <h4><?php echo esc_html($review['name']); ?></h4>
+                                <?php if (!empty($review['rating'])) : ?>
+                                    <div class="review-rating">
+                                        <?php for ($i = 1; $i <= 5; $i++) : ?>
+                                            <span class="star <?php echo ($i <= $review['rating']) ? 'filled' : ''; ?>">★</span>
+                                        <?php endfor; ?>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if (!empty($review['date'])) : ?>
+                                    <div class="review-date"><?php echo esc_html($review['date']); ?></div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <div class="review-text">
+                            <p><?php echo esc_html($review['text']); ?></p>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+    <?php endif; ?>
 
     <!-- Gallery Section -->
     <?php 
