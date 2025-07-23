@@ -186,13 +186,6 @@ $services_query = new WP_Query([
                 <?php if (empty($external_reviews) && count($reviews_items) > 1) : ?>
                 <div class="reviews-pagination">
                     <button class="prev-review" onclick="changeReview(-1)">←</button>
-                    <?php 
-                    $total_reviews = count(array_filter($reviews_items, function($review) {
-                        return !empty($review['name']) && !empty($review['text']);
-                    }));
-                    for ($i = 0; $i < $total_reviews; $i++) : ?>
-                        <button class="review-page <?php echo ($i === 0) ? 'current-page' : ''; ?>" onclick="goToReview(<?php echo $i; ?>)"><?php echo $i + 1; ?></button>
-                    <?php endfor; ?>
                     <button class="next-review" onclick="changeReview(1)">→</button>
                 </div>
                 <?php endif; ?>
@@ -217,11 +210,6 @@ $services_query = new WP_Query([
         if (targetGrid) {
             targetGrid.classList.add('active');
         }
-        
-        // Обновляем пагинацию
-        document.querySelectorAll('.review-page').forEach((btn, i) => {
-            btn.classList.toggle('current-page', i === index);
-        });
         
         // Обновляем кнопки prev/next
         document.querySelector('.prev-review').disabled = index === 0;
