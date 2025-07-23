@@ -15,6 +15,15 @@ function oyster_farm_reviews_admin_menu() {
 }
 add_action('admin_menu', 'oyster_farm_reviews_admin_menu');
 
+// Подключаем скрипты для страницы отзывов
+function oyster_farm_reviews_admin_scripts($hook) {
+    if ($hook == 'toplevel_page_oyster-farm-reviews') {
+        wp_enqueue_media();
+        wp_enqueue_script('jquery');
+    }
+}
+add_action('admin_enqueue_scripts', 'oyster_farm_reviews_admin_scripts');
+
 // Страница настроек отзывов
 function oyster_farm_reviews_admin_page() {
     if (isset($_POST['submit'])) {
@@ -134,22 +143,19 @@ function oyster_farm_reviews_admin_page() {
         }
     });
 
-    // Функция выбора изображения (используется та же, что в admin.js)
+    // Функция выбора изображения
     function selectImage(inputName) {
-        var frame;
-        if (frame) {
-            frame.open();
-            return;
-        }
-        frame = wp.media({
+        var frame = wp.media({
             title: 'Выбрать изображение',
             button: { text: 'Использовать' },
             multiple: false
         });
+        
         frame.on('select', function() {
             var attachment = frame.state().get('selection').first().toJSON();
             document.querySelector('input[name="' + inputName + '"]').value = attachment.url;
         });
+        
         frame.open();
     }
     </script>
