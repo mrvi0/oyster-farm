@@ -1,7 +1,7 @@
 /*
 Theme Name: Oyster Farm
 Description: Современная тема для компании гастроэкскурсий на устричную ферму
-Version: 3.31.3
+Version: 3.31.4
 Author: Mr Vi
 Author URI: https://t.me/b4dcat
 Theme URI: https://github.com/mrvi0/oyster-farm
@@ -309,6 +309,149 @@ section,
 }
 
 .products-section { background: var(--color-bg); }
+
+/* Reviews Section */
+.reviews-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.reviews-grid {
+    display: none;
+}
+
+.reviews-grid.active {
+    display: block;
+}
+
+.review-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.review-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.review-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.review-content {
+    flex: 1;
+}
+
+.review-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.review-header h4 {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.review-rating {
+    margin-bottom: 8px;
+}
+
+.star {
+    font-size: 1.2rem;
+    margin: 0 2px;
+    color: #ddd;
+}
+
+.star.filled {
+    color: #ffd700;
+}
+
+.review-date {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-bottom: 15px;
+}
+
+.review-text p {
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #555;
+    margin: 0;
+}
+
+.reviews-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.reviews-pagination button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+.reviews-pagination button:hover {
+    background: #c0392b;
+}
+
+.reviews-pagination button:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+}
+
+.reviews-pagination .current-page {
+    background: #2c3e50;
+}
+
+/* Mobile Responsive for Reviews */
+@media (max-width: 768px) {
+    .review-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .review-photo {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+    }
+    
+    .review-header {
+        align-items: center;
+    }
+    
+    .review-content {
+        text-align: center;
+    }
+}
+
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
